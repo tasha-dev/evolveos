@@ -1,9 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
 import { cn } from "@/lib/util";
-import Image from "next/image";
 import Link from "next/link";
-import LogoImage from "@/image/logo.png";
 import { FooterProps } from "@/type/component";
 import { Code, Github } from "lucide-react";
 import { Button } from "./ui/button";
