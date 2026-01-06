@@ -1,5 +1,6 @@
 // Codes by mahdi tasha
 // Importing part
+import Footer from "@/component/footer";
 import Header from "@/component/header";
 import CTA from "@/component/section/home/cta";
 import Feature from "@/component/section/home/feature";
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Why />
       <VisualDemo />
       <CTA />
+      <Footer />
     </>
   );
 }

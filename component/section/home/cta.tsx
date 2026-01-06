@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function CTA() {
   // Returning JSX
   return (
-    <section className="max-w-4xl border-x border-foreground/10 mx-auto border-b h-dvh flex items-center justify-center">
+    <section className="max-w-4xl border-x border-foreground/10 mx-auto h-dvh flex items-center justify-center">
       <main className="prose dark:prose-invert prose-neutral p-4 max-w-full ">
         <h2 className="mt-0 text-center">
           Start Taking Control of Your Life Today

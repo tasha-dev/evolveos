@@ -16,3 +16,7 @@ export interface ThemeTogglerProps {
   variant?: "outline" | "default";
   size?: "icon" | "icon-lg";
 }
+
+export interface FooterProps {
+  className?: string;
+}
