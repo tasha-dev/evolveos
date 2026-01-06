@@ -6,3 +6,13 @@ import { ReactNode } from "react";
 export interface RootLayoutProps {
   children: ReactNode;
 }
+
+export interface HeaderProps {
+  className?: string;
+}
+
+export interface ThemeTogglerProps {
+  className?: string;
+  variant?: "outline" | "default";
+  size?: "icon" | "icon-lg";
+}
