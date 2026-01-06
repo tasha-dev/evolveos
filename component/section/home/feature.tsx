@@ -51,7 +51,10 @@ const cards: {
 export default function Feature() {
   // Returning JSX
   return (
-    <section className="max-w-4xl border-x border-foreground/10 mx-auto border-b">
+    <section
+      className="max-w-4xl border-x border-foreground/10 mx-auto border-b"
+      id="feature"
+    >
       <main className="prose dark:prose-invert prose-neutral p-4 max-w-full">
         <h2 className="mt-0">
           Everything You Need to Take Control of Your Life

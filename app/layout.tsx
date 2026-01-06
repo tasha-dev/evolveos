@@ -77,7 +77,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <ThemeProvider>
         <body
           className={cn(
-            "bg-background text-foreground overflow-y-auto overflow-x-hidden",
+            "bg-background text-foreground overflow-y-auto overflow-x-hidden scroll-smooth",
             interFont.className,
           )}
         >
