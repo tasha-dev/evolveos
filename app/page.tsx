@@ -1,6 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
 import Header from "@/component/header";
+import Feature from "@/component/section/home/feature";
 import Hero from "@/component/section/home/hero";
 
 // Creating and exporting home page as default
@@ -10,6 +11,7 @@ export default function HomePage() {
     <>
       <Header />
       <Hero />
+      <Feature />
     </>
   );
 }

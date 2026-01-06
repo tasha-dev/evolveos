@@ -8,8 +8,8 @@ import Link from "next/link";
 export default function Hero() {
   // Returning JSX
   return (
-    <section className="max-w-4xl border-x border-x-foreground/10 mx-auto">
-      <main className="prose dark:prose-invert prose-neutral min-h-[calc(100dvh-65px)] p-4">
+    <section className="max-w-4xl border-x border-foreground/10 mx-auto border-b">
+      <main className="prose dark:prose-invert prose-neutral min-h-[calc(100dvh-65px)] p-4 max-w-full">
         <h1 className="mt-0">Build Systems. Grow Daily.</h1>
         <p>
           EvolveOS is a markdown-first, offline-friendly personal growth OS that
