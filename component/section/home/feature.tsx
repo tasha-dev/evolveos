@@ -51,8 +51,8 @@ const cards: {
 export default function Feature() {
   // Returning JSX
   return (
-    <section className="max-w-4xl border-x border-x-foreground/10 mx-auto">
-      <main className="prose dark:prose-invert prose-neutral min-h-[calc(100dvh-65px)] p-4 max-w-full">
+    <section className="max-w-4xl border-x border-foreground/10 mx-auto border-b">
+      <main className="prose dark:prose-invert prose-neutral p-4 max-w-full">
         <h2 className="mt-0">
           Everything You Need to Take Control of Your Life
         </h2>

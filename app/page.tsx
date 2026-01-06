@@ -3,6 +3,7 @@
 import Header from "@/component/header";
 import Feature from "@/component/section/home/feature";
 import Hero from "@/component/section/home/hero";
+import Why from "@/component/section/home/why";
 
 // Creating and exporting home page as default
 export default function HomePage() {
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Header />
       <Hero />
       <Feature />
+      <Why />
     </>
   );
 }
