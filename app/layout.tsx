@@ -4,6 +4,8 @@ import "@/app/globals.css";
 import type { Metadata } from "next";
 import { RootLayoutProps } from "@/type/component";
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+import { cn } from "@/lib/util";
 
 // Defining metadata
 export const metadata: Metadata = {
@@ -72,7 +74,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
   // Returning JSX
   return (
     <html suppressHydrationWarning lang="en">
-      <body>{children}</body>
+      <ThemeProvider>
+        <body
+          className={cn(
+            "bg-background text-foreground overflow-y-auto overflow-x-hidden",
+            interFont.className,
+          )}
+        >
+          {children}
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
