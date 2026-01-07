@@ -10,18 +10,23 @@ import { Button } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 // Creating and exporting Banner component as default
-export default function Banner({ src, title, className }: BannerProps) {
+export default function Banner({
+  src,
+  title,
+  className,
+  onMenuClick,
+}: BannerProps) {
   // Returning JSX
   return (
-    <div className={cn("h-[200px] relative z-0 overflow-hidden", className)}>
+    <header className={cn("h-[200px] relative overflow-hidden", className)}>
       <ImageFallBack
         alt={"Banner"}
         width={1000}
         height={1000}
-        className="absolute top-0 left-0 w-full h-full object-cover z-10"
+        className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none select-none"
         src={src}
       />
-      <div className="relative z-20 max-w-4xl p-4 mx-auto prose dark:prose-invert prose-neutral">
+      <div className="relative max-w-4xl p-4 mx-auto prose dark:prose-invert prose-neutral">
         <div className="flex items-center justify-between gap-4">
           <h1 className="!my-0 text-left block flex-1 truncate">{title}</h1>
           <div className="flex items-center justify-between gap-3">
@@ -32,7 +37,7 @@ export default function Banner({ src, title, className }: BannerProps) {
             <ThemeToggler variant="blur" />
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant={"blur"} size={"icon-lg"}>
+                <Button variant={"blur"} size={"icon-lg"} onClick={onMenuClick}>
                   <List />
                 </Button>
               </TooltipTrigger>
@@ -41,6 +46,6 @@ export default function Banner({ src, title, className }: BannerProps) {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }

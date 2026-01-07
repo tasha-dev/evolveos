@@ -1,8 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
-import Banner from "@/component/banner";
+import DashboardLayout from "@/component/dashboardLayout";
 import type { Metadata } from "next";
-import SilkImage from "@/image/silk.png";
 
 // Defining metadata
 export const metadata: Metadata = {
@@ -13,9 +12,8 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   // Returning JSX
   return (
-    <div>
-      <Banner src={SilkImage.src} title="Dashboard" />
+    <DashboardLayout>
       <h1>Hello world</h1>
-    </div>
+    </DashboardLayout>
   );
 }

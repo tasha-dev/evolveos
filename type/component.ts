@@ -25,6 +25,7 @@ export interface BannerProps {
   className?: string;
   src: string;
   title: string;
+  onMenuClick?: () => void;
 }
 
 export interface ImageFallBackProps {
@@ -33,4 +34,14 @@ export interface ImageFallBackProps {
   width: number;
   height: number;
   className?: string;
+}
+
+export interface DashboardLayoutProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export interface NavBarProps {
+  open: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
