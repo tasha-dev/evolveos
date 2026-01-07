@@ -43,7 +43,7 @@ export default function DashboardLayout({
   // Returning JSX
   return (
     <div className="flex items-stretch justify-center overflow-hidden lg:h-dvh">
-      {!greeting && <Greeting onOpenChange={() => setGreeting(true)} />}
+      {!greeting && <Greeting onOpenChange={() => setGreeting(true)} open />}
       <NavBar open={navbarOpen} onOpenChange={setNavBarOpen} />
       <div className="flex-1 h-full">
         <Banner
