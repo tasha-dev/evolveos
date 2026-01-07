@@ -3,7 +3,11 @@
 import type { NextConfig } from "next";
 
 // Defining config of next.js
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  images: {
+    domains: ["picsum.photos"],
+  },
+};
 
 // Exporting the configs as default
 export default nextConfig;

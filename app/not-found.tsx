@@ -4,7 +4,13 @@ import Footer from "@/component/footer";
 import Header from "@/component/header";
 import { Button } from "@/component/ui/button";
 import { Home, LayoutDashboard } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
+
+// Defining metadata
+export const metadata: Metadata = {
+  title: "Page Not Found",
+};
 
 // Creating and exporting 404 page as default
 export default function NotFoundPage() {

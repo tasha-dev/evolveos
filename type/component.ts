@@ -13,10 +13,24 @@ export interface HeaderProps {
 
 export interface ThemeTogglerProps {
   className?: string;
-  variant?: "outline" | "default";
+  variant?: "outline" | "default" | "blur";
   size?: "icon" | "icon-lg";
 }
 
 export interface FooterProps {
+  className?: string;
+}
+
+export interface BannerProps {
+  className?: string;
+  src: string;
+  title: string;
+}
+
+export interface ImageFallBackProps {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
   className?: string;
 }
