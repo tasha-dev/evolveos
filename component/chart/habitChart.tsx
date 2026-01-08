@@ -14,7 +14,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/component/ui/chart";
-import moment from "moment";
 import { getLast30DaysHabitPoints } from "@/lib/util";
 import { HabitPoint } from "@/type/util";
 
