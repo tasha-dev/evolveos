@@ -39,9 +39,14 @@ export interface ImageFallBackProps {
 export interface DashboardLayoutProps {
   children: ReactNode;
   className?: string;
+  bannerTitle: string;
 }
 
 export interface NavBarProps {
   open: boolean;
   onOpenChange?: (open: boolean) => void;
+}
+
+export interface HabitChartProps {
+  className?: string;
 }

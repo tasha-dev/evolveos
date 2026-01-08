@@ -1,5 +1,14 @@
 // Codes by mahdi tasha
 // Defining type for general things in whole app
+export type WeekDay =
+  | "saturday"
+  | "sunday"
+  | "monday"
+  | "tuesday"
+  | "wendesday"
+  | "thursday"
+  | "friday";
+
 export interface journal {
   id: number;
   createdAt: string;
@@ -27,15 +36,8 @@ export interface habit {
   id: number;
   createdAt: string;
   title: string;
-  on: Array<
-    | "saturday"
-    | "sunday"
-    | "monday"
-    | "tuesday"
-    | "wendesday"
-    | "thursday"
-    | "friday"
-  >;
+  done: boolean;
+  on: Array<WeekDay>;
 }
 
 export interface note {

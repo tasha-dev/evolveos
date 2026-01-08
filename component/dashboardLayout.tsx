@@ -17,6 +17,7 @@ import Greeting from "./dialog/greeting";
 export default function DashboardLayout({
   children,
   className,
+  bannerTitle,
 }: DashboardLayoutProps) {
   // Defining hooks
   const [navbarOpen, setNavBarOpen] = useState<boolean>(false);
@@ -36,7 +37,7 @@ export default function DashboardLayout({
     defaultValue: [],
   });
 
-  const habits = useLocalStorageState<habit[]>("projects", {
+  const habits = useLocalStorageState<habit[]>("habits", {
     defaultValue: [],
   });
 
@@ -45,10 +46,10 @@ export default function DashboardLayout({
     <div className="flex items-stretch justify-center overflow-hidden lg:h-dvh">
       {!greeting && <Greeting onOpenChange={() => setGreeting(true)} open />}
       <NavBar open={navbarOpen} onOpenChange={setNavBarOpen} />
-      <div className="flex-1 h-full">
+      <div className="flex-1 h-full overflow-auto">
         <Banner
           src={SilkImage.src}
-          title="Dashboard"
+          title={bannerTitle}
           onMenuClick={() => setNavBarOpen((prev) => !prev)}
         />
         <section>

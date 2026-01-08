@@ -1,5 +1,6 @@
 // Codes by mahdi tasha
 // Importing part
+import HabitChart from "@/component/chart/habitChart";
 import DashboardLayout from "@/component/dashboardLayout";
 import type { Metadata } from "next";
 
@@ -12,8 +13,8 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   // Returning JSX
   return (
-    <DashboardLayout>
-      <h1>Hello world</h1>
+    <DashboardLayout bannerTitle="Dashboard">
+      <HabitChart />
     </DashboardLayout>
   );
 }
