@@ -3,6 +3,7 @@
 import HabitChart from "@/component/chart/habitChart";
 import DashboardLayout from "@/component/dashboardLayout";
 import ProjectsShowcase from "@/component/projectsShowscase";
+import QuickJournalView from "@/component/quickJournalView";
 import QuickNotesView from "@/component/quickNotesView";
 import QuickTasksView from "@/component/quickTasksView";
 import type { Metadata } from "next";
@@ -23,6 +24,7 @@ export default function DashboardPage() {
         <QuickNotesView className="lg:max-h-[200px] lg:overflow-auto overflow-hidden" />
         <QuickTasksView className="lg:max-h-[200px] lg:overflow-auto overflow-hidden" />
       </div>
+      <QuickJournalView />
     </DashboardLayout>
   );
 }

@@ -67,3 +67,11 @@ export interface ProjectDashboardItemProps {
 export interface QuickNotesViewProps {
   className?: string;
 }
+
+export interface QuickJournalViewProps {
+  className?: string;
+}
+
+export interface QuickTasksViewProps {
+  className?: string;
+}
