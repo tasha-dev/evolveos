@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogClose,
+  DialogBody,
 } from "@/component/ui/dialog";
 import { CustomDialogProps } from "@/type/general";
 import { Button } from "../ui/button";
@@ -30,7 +31,7 @@ export default function Greeting({ onOpenChange, open }: CustomDialogProps) {
             place.
           </DialogDescription>
         </DialogHeader>
-        <div className="prose prose-neutral dark:prose-invert">
+        <DialogBody className="prose prose-neutral dark:prose-invert">
           <p>
             EvolveOS is designed around systems, not motivation. <br /> With
             your dashboard, you can:
@@ -44,7 +45,7 @@ export default function Greeting({ onOpenChange, open }: CustomDialogProps) {
               forever
             </li>
           </ul>
-        </div>
+        </DialogBody>
         <DialogFooter>
           <DialogClose asChild>
             <Button size={"lg"} variant={"default"}>

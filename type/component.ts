@@ -50,3 +50,16 @@ export interface NavBarProps {
 export interface HabitChartProps {
   className?: string;
 }
+
+export interface ProjectsShowcaseProps {
+  className?: string;
+}
+
+export interface ProjectDashboardItemProps {
+  className?: string;
+  data: {
+    done: boolean;
+    title: string;
+    createdAt: string;
+  };
+}

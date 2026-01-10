@@ -27,6 +27,7 @@ export interface task {
 
 export interface project {
   id: number;
+  done: boolean;
   createdAt: string;
   title: string;
   content: string;

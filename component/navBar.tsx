@@ -81,7 +81,7 @@ export default function NavBar({ open, onOpenChange }: NavBarProps) {
   return (
     <aside
       data-open={open}
-      className="h-dvh dark:bg-neutral-900 bg-neutral-200 border-r border-r-foreground/10 shrink-0 transition-all duration-500 data-[open=false]:w-0 lg:data-[open=true]:w-1/5 data-[open=true]:w-3/4 overflow-hidden flex items-center flex-col justify-between lg:static absolute left-0 top-0 z-50"
+      className="h-dvh dark:bg-neutral-900 bg-neutral-200 border-r border-r-foreground/10 shrink-0 transition-all duration-500 data-[open=false]:w-0 lg:data-[open=true]:w-1/5 data-[open=true]:w-3/4 overflow-hidden flex items-center flex-col justify-between lg:static fixed left-0 top-0 z-50 data-[open=false]:invisible data-[open=true]:visible"
     >
       <div className="h-full overflow-y-auto overflow-x-hidden w-full">
         {data.map((groupItem, groupIndex) => (

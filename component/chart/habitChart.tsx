@@ -42,7 +42,7 @@ export default function HabitChart({ className }: HabitChartProps) {
           Small daily actions build long-term results. Stay consistent.
         </CardDescription>
       </CardHeader>
-      <div className="p-4">
+      <div className="py-4 px-6">
         <ChartContainer config={chartConfig}>
           <AreaChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} strokeDasharray="3 3" />

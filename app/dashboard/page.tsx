@@ -2,6 +2,7 @@
 // Importing part
 import HabitChart from "@/component/chart/habitChart";
 import DashboardLayout from "@/component/dashboardLayout";
+import ProjectsShowcase from "@/component/projectsShowscase";
 import type { Metadata } from "next";
 
 // Defining metadata
@@ -13,8 +14,9 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   // Returning JSX
   return (
-    <DashboardLayout bannerTitle="Dashboard">
+    <DashboardLayout bannerTitle="Dashboard" className="flex flex-col gap-4">
       <HabitChart />
+      <ProjectsShowcase />
     </DashboardLayout>
   );
 }
