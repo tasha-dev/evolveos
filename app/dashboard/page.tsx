@@ -3,6 +3,7 @@
 import HabitChart from "@/component/chart/habitChart";
 import DashboardLayout from "@/component/dashboardLayout";
 import ProjectsShowcase from "@/component/projectsShowscase";
+import QuickNotesView from "@/component/quickNotesView";
 import type { Metadata } from "next";
 
 // Defining metadata
@@ -17,6 +18,9 @@ export default function DashboardPage() {
     <DashboardLayout bannerTitle="Dashboard" className="flex flex-col gap-4">
       <HabitChart />
       <ProjectsShowcase />
+      <div className="grid lg:grid-cols-2 gap-4">
+        <QuickNotesView className="lg:max-h-[200px] lg:overflow-auto overflow-hidden" />
+      </div>
     </DashboardLayout>
   );
 }

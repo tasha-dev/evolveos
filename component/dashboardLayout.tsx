@@ -23,7 +23,7 @@ export default function DashboardLayout({
   const [navbarOpen, setNavBarOpen] = useState<boolean>(false);
 
   // Defining local storage states
-  const notes = useLocalStorageState<note[]>("projects", { defaultValue: [] });
+  const notes = useLocalStorageState<note[]>("notes", { defaultValue: [] });
   const tasks = useLocalStorageState<task[]>("tasks", { defaultValue: [] });
   const [greeting, setGreeting] = useLocalStorageState<boolean>("greeting", {
     defaultValue: false,

@@ -63,3 +63,7 @@ export interface ProjectDashboardItemProps {
     createdAt: string;
   };
 }
+
+export interface QuickNotesViewProps {
+  className?: string;
+}
