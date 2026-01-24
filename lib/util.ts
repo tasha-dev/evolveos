@@ -1,9 +1,16 @@
 // Codes by mahdi tasha
 // Importing part
-import { HabitsLocalStorageType } from "@/type/localStorage";
+import {
+  HabitsLocalStorageType,
+  TasksLocalStorageType,
+} from "@/type/localStorage";
+import { CalendarItemType } from "@/type/util";
 import { clsx, type ClassValue } from "clsx";
 import moment from "moment";
 import { twMerge } from "tailwind-merge";
+
+// Defining variables
+const dateFormat = "YYYY/MM/DD";
 
 // Creating and exporting helper and utility functions
 export function cn(...inputs: ClassValue[]) {
@@ -12,10 +19,9 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getLast30DaysOfHabitScore(
   habitsLocalStorage: HabitsLocalStorageType,
-): { date: string; score: number }[] {
+) {
   // Defining variables
-  let arrayToReturn: { date: string; score: number }[] = [];
-  const dateFormat = "YYYY/MM/DD";
+  let arrayToReturn = [];
 
   // Defining simple for loop to get last 30 days and verify them
   for (let i = 30; i >= 0; i--) {
@@ -32,4 +38,22 @@ export function getLast30DaysOfHabitScore(
 
   // Returning part
   return arrayToReturn;
+}
+
+export function getCalendarItems(
+  tasks: TasksLocalStorageType,
+  habits: HabitsLocalStorageType,
+): CalendarItemType[] {
+  // Defining variables
+  const today = moment().format(dateFormat);
+  const transformedHabits: CalendarItemType[] = habits.map((item) => ({
+    title: item.title,
+    type: "habit",
+    done: item.doneAt.includes(today),
+  }));
+
+  const completeArray = transformedHabits;
+
+  // Returning part
+  return completeArray;
 }

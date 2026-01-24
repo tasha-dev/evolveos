@@ -13,9 +13,9 @@ import {
   DialogClose,
   DialogBody,
 } from "@/component/ui/dialog";
-import { CustomDialogProps } from "@/type/general";
 import { Button } from "../ui/button";
 import { Trophy } from "lucide-react";
+import { CustomDialogProps } from "@/type/component";
 
 // Creating and exporting Greeting dialog as default
 export default function Greeting({ onOpenChange, open }: CustomDialogProps) {

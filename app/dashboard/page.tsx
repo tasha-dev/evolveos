@@ -1,5 +1,6 @@
 // Codes by mahdi tasha
 // Importing part
+import Calendar from "@/component/calendar";
 import HabitChart from "@/component/chart/habitChart";
 import DashboardLayout from "@/component/dashboardLayout";
 import ProjectsShowcase from "@/component/projectsShowscase";
@@ -25,6 +26,7 @@ export default function DashboardPage() {
         <QuickTasksView className="lg:max-h-[200px] lg:overflow-auto overflow-hidden" />
       </div>
       <QuickJournalView className="lg:max-h-[350px]" />
+      <Calendar />
     </DashboardLayout>
   );
 }

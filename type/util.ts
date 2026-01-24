@@ -1,5 +1,6 @@
 // Creating and exporting used types for utility functions
-export interface HabitPoint {
-  date: string;
-  point: number;
+export interface CalendarItemType {
+  type: "task" | "habit";
+  title: string;
+  done: boolean;
 }

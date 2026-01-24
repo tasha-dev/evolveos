@@ -88,3 +88,7 @@ export interface DashboardListItemProps {
   title: string;
   date?: string;
 }
+
+export interface CalendarProps {
+  className?: string;
+}
