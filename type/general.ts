@@ -7,11 +7,18 @@ export interface journal {
   content: string;
 }
 
+export interface note {
+  id: number;
+  createdAt: string;
+  content: string;
+}
+
 export interface task {
   id: number;
   createdAt: string;
   title: string;
   description?: string;
+  doneAt: string[];
 }
 
 export interface project {
@@ -19,16 +26,12 @@ export interface project {
   createdAt: string;
   title: string;
   content: string;
+  doneAt: string[];
 }
 
 export interface habit {
   id: number;
   createdAt: string;
   title: string;
-}
-
-export interface note {
-  id: number;
-  createdAt: string;
-  content: string;
+  doneAt: string[];
 }

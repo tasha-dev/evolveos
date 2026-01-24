@@ -6,17 +6,6 @@ import { habit, journal, note, task } from "./general";
 // Defining type for saved items in local storage
 export type NotesLocalStorageType = note[];
 export type JournalsLocalStorageType = journal[];
-export interface ProjectsLocalStorageType {
-  done: number[];
-  items: Project[];
-}
-
-export interface TasksLocalStorageType {
-  done: number[];
-  items: task[];
-}
-
-export interface HabitsLocalStorageType {
-  done: number[];
-  items: habit[];
-}
+export type ProjectsLocalStorageType = Project[];
+export type TasksLocalStorageType = task[];
+export type HabitsLocalStorageType = habit[];

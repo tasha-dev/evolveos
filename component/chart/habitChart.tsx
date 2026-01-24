@@ -5,7 +5,6 @@
 // Importing part
 import useLocalStorageState from "use-local-storage-state";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { habit } from "@/type/general";
 import { HabitChartProps } from "@/type/component";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import {
@@ -14,6 +13,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/component/ui/chart";
+import { HabitsLocalStorageType } from "@/type/localStorage";
+import { getLast30DaysOfHabitScore } from "@/lib/util";
 
 // Defining chart config
 const chartConfig = {
@@ -26,8 +27,8 @@ const chartConfig = {
 // Creating and exporting HabitChart component as default
 export default function HabitChart({ className }: HabitChartProps) {
   // Defining hooks
-  const [habits] = useLocalStorageState<habit[]>("habits");
-  const chartData = habits;
+  const [habits] = useLocalStorageState<HabitsLocalStorageType>("habits");
+  const chartData = habits ? getLast30DaysOfHabitScore(habits) : [];
 
   // Returning JSX
   return (
@@ -59,7 +60,7 @@ export default function HabitChart({ className }: HabitChartProps) {
               </linearGradient>
             </defs>
             <Area
-              dataKey="point"
+              dataKey="score"
               fill="url(#gradient-score)"
               fillOpacity={0.4}
               stroke="var(--color-score)"

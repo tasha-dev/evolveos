@@ -32,6 +32,7 @@ export default function DashboardLayout({
   const notes = useLocalStorageState<NotesLocalStorageType>("notes", {
     defaultValue: [],
   });
+
   const [greeting, setGreeting] = useLocalStorageState<boolean>("greeting", {
     defaultValue: false,
   });
@@ -41,24 +42,15 @@ export default function DashboardLayout({
   });
 
   const tasks = useLocalStorageState<TasksLocalStorageType>("tasks", {
-    defaultValue: {
-      done: [],
-      items: [],
-    },
+    defaultValue: [],
   });
 
   const projects = useLocalStorageState<ProjectsLocalStorageType>("projects", {
-    defaultValue: {
-      done: [],
-      items: [],
-    },
+    defaultValue: [],
   });
 
   const habits = useLocalStorageState<HabitsLocalStorageType>("habits", {
-    defaultValue: {
-      done: [],
-      items: [],
-    },
+    defaultValue: [],
   });
 
   // Returning JSX
