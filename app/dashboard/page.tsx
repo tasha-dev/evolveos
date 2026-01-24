@@ -24,7 +24,7 @@ export default function DashboardPage() {
         <QuickNotesView className="lg:max-h-[200px] lg:overflow-auto overflow-hidden" />
         <QuickTasksView className="lg:max-h-[200px] lg:overflow-auto overflow-hidden" />
       </div>
-      <QuickJournalView />
+      <QuickJournalView className="lg:max-h-[350px]" />
     </DashboardLayout>
   );
 }

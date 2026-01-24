@@ -41,7 +41,7 @@ export default function QuickTasksView({ className }: QuickTasksViewProps) {
                 ) : (
                   <Square className="inline-flex mr-2 size-4 shrink-0" />
                 )}
-                <span className="text-left truncate inline-flex text-sm">
+                <span className="text-left truncate inline-flex">
                   {item.title}
                 </span>
               </li>

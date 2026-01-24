@@ -68,30 +68,6 @@ export default function DashboardLayout({
         />
         <section>
           <main className={cn("max-w-4xl p-4 mx-auto", className)}>
-            <Button
-              onClick={() => {
-                tasks[1]([
-                  {
-                    content: "### HI",
-                    createdAt: moment().subtract(2, "day").format("YYYY/MM/DD"),
-                    done: false,
-                    title: "HI",
-                    id: 0,
-                  },
-                  {
-                    content: "### HI",
-                    done: true,
-                    title: "XKJKJK",
-                    createdAt: moment()
-                      .subtract(2, "hour")
-                      .format("YYYY/MM/DD"),
-                    id: 1,
-                  },
-                ]);
-              }}
-            >
-              CLICK
-            </Button>
             {children}
           </main>
         </section>
