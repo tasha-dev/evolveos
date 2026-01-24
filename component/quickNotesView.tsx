@@ -7,6 +7,7 @@ import { QuickNotesViewProps } from "@/type/component";
 import { note } from "@/type/general";
 import useLocalStorageState from "use-local-storage-state";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import DashboardListItem from "./dashboardListItem";
 
 // Creating and exporting QuickNotesView component as default
 export default function QuickNotesView({ className }: QuickNotesViewProps) {
@@ -25,17 +26,22 @@ export default function QuickNotesView({ className }: QuickNotesViewProps) {
           An overview of your latest notes, Making sure to not forget them.
         </CardDescription>
       </CardHeader>
-      <div className="prose dark:prose-invert prose-neutral max-w-full w-full">
+      <div className="prose dark:prose-invert prose-neutral max-w-full w-full px-6">
         {notesToRender.length === 0 ? (
           <span className="text-center block truncate">
             There is nothing to show
           </span>
         ) : (
-          <ul className="list-inside">
+          <div className="flex flex-col gap-3">
             {notesToRender.map((item, index) => (
-              <li key={index}>{item.content}</li>
+              <DashboardListItem
+                key={index}
+                title={item.content}
+                date={item.createdAt}
+                icon={"circle"}
+              />
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </Card>

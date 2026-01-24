@@ -81,3 +81,10 @@ export interface CustomDialogProps {
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
 }
+
+export interface DashboardListItemProps {
+  className?: string;
+  icon?: "square-check" | "square" | "circle" | "circle-fill";
+  title: string;
+  date?: string;
+}

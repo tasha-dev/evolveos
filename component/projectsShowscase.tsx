@@ -7,8 +7,8 @@ import { ProjectsShowcaseProps } from "@/type/component";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { TabsContent, Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import useLocalStorageState from "use-local-storage-state";
-import ProjectDashboardItem from "./projectDashboardItem";
 import { ProjectsLocalStorageType } from "@/type/localStorage";
+import DashboardListItem from "./dashboardListItem";
 
 // Creating and exporting ProjectsShowcase component as default
 export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
@@ -45,7 +45,12 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
             ) : (
               <div className="flex flex-col gap-3">
                 {activeOnes.map((item, index) => (
-                  <ProjectDashboardItem data={item} key={index} />
+                  <DashboardListItem
+                    date={item.createdAt}
+                    title={item.title}
+                    icon={item.done ? "square-check" : "square"}
+                    key={index}
+                  />
                 ))}
               </div>
             )}
@@ -58,7 +63,12 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
             ) : (
               <div className="flex flex-col gap-3">
                 {projectsCopy.map((item, index) => (
-                  <ProjectDashboardItem data={item} key={index} />
+                  <DashboardListItem
+                    date={item.createdAt}
+                    title={item.title}
+                    icon={item.done ? "square-check" : "square"}
+                    key={index}
+                  />
                 ))}
               </div>
             )}
@@ -71,7 +81,12 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
             ) : (
               <div className="flex flex-col gap-3">
                 {completedOnes.map((item, index) => (
-                  <ProjectDashboardItem data={item} key={index} />
+                  <DashboardListItem
+                    date={item.createdAt}
+                    title={item.title}
+                    icon={item.done ? "square-check" : "square"}
+                    key={index}
+                  />
                 ))}
               </div>
             )}

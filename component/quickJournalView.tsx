@@ -7,6 +7,7 @@ import { QuickJournalViewProps } from "@/type/component";
 import { journal } from "@/type/general";
 import useLocalStorageState from "use-local-storage-state";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import DashboardListItem from "./dashboardListItem";
 
 // Creating and exporting QuickJournalView component as default
 export default function QuickJournalView({ className }: QuickJournalViewProps) {
@@ -25,17 +26,22 @@ export default function QuickJournalView({ className }: QuickJournalViewProps) {
           Your glouries story of success, day by day.
         </CardDescription>
       </CardHeader>
-      <div className="prose dark:prose-invert prose-neutral max-w-full w-full">
+      <div className="prose dark:prose-invert prose-neutral max-w-full w-full px-6">
         {journalsToRender.length === 0 ? (
           <span className="text-center block truncate">
             There is nothing to show
           </span>
         ) : (
-          <ul className="list-inside">
+          <div className="flex flex-col gap-3">
             {journalsToRender.map((item, index) => (
-              <li key={index}>{item.title}</li>
+              <DashboardListItem
+                key={index}
+                title={item.title}
+                date={item.createdAt}
+                icon={"circle"}
+              />
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </Card>

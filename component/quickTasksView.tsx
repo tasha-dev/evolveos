@@ -7,7 +7,7 @@ import { QuickTasksViewProps } from "@/type/component";
 import { task } from "@/type/general";
 import useLocalStorageState from "use-local-storage-state";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Square, SquareCheck } from "lucide-react";
+import DashboardListItem from "./dashboardListItem";
 
 // Creating and exporting QuickTasksView component as default
 export default function QuickTasksView({ className }: QuickTasksViewProps) {
@@ -27,26 +27,22 @@ export default function QuickTasksView({ className }: QuickTasksViewProps) {
           improvement.
         </CardDescription>
       </CardHeader>
-      <div className="prose dark:prose-invert prose-neutral max-w-full w-full">
+      <div className="prose dark:prose-invert prose-neutral max-w-full w-full px-6">
         {tasksToRender.length === 0 ? (
           <span className="text-center block truncate">
             There is nothing to show
           </span>
         ) : (
-          <ul className="list-inside">
+          <div className="flex flex-col gap-3">
             {tasksToRender.map((item, index) => (
-              <li key={index}>
-                {item.done ? (
-                  <SquareCheck className="inline-flex mr-2 size-4 shrink-0" />
-                ) : (
-                  <Square className="inline-flex mr-2 size-4 shrink-0" />
-                )}
-                <span className="text-left truncate inline-flex">
-                  {item.title}
-                </span>
-              </li>
+              <DashboardListItem
+                key={index}
+                title={item.content}
+                date={item.createdAt}
+                icon={item.done ? "circle-fill" : "circle"}
+              />
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </Card>
