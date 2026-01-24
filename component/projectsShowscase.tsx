@@ -7,13 +7,13 @@ import { ProjectsShowcaseProps } from "@/type/component";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { TabsContent, Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import useLocalStorageState from "use-local-storage-state";
-import { project } from "@/type/general";
 import ProjectDashboardItem from "./projectDashboardItem";
+import { ProjectsLocalStorageType } from "@/type/localStorage";
 
 // Creating and exporting ProjectsShowcase component as default
 export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
   // Defining hooks
-  const [projects] = useLocalStorageState<project[]>("projects");
+  const [projects] = useLocalStorageState<ProjectsLocalStorageType>("projects");
 
   // Defining variables
   const projectsCopy = projects ? [...projects] : [];
@@ -31,10 +31,10 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
         </CardDescription>
       </CardHeader>
       <div className="py-4 px-6">
-        <Tabs defaultValue="active">
-          <TabsList>
-            <TabsTrigger value="active">Active</TabsTrigger>
+        <Tabs defaultValue="all">
+          <TabsList className="mb-5">
             <TabsTrigger value="all">All</TabsTrigger>
+            <TabsTrigger value="active">Active</TabsTrigger>
             <TabsTrigger value="completed">Completed</TabsTrigger>
           </TabsList>
           <TabsContent value="active">
@@ -43,7 +43,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
                 <span>There is nothing to show</span>
               </div>
             ) : (
-              <div className="grid grid-cols-3 gap-6">
+              <div className="flex flex-col gap-3">
                 {activeOnes.map((item, index) => (
                   <ProjectDashboardItem data={item} key={index} />
                 ))}
@@ -56,7 +56,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
                 <span>There is nothing to show</span>
               </div>
             ) : (
-              <div className="grid grid-cols-3 gap-6">
+              <div className="flex flex-col gap-3">
                 {projectsCopy.map((item, index) => (
                   <ProjectDashboardItem data={item} key={index} />
                 ))}
@@ -69,7 +69,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
                 <span>There is nothing to show</span>
               </div>
             ) : (
-              <div className="grid grid-cols-3 gap-6">
+              <div className="flex flex-col gap-3">
                 {completedOnes.map((item, index) => (
                   <ProjectDashboardItem data={item} key={index} />
                 ))}

@@ -26,7 +26,7 @@ export interface project {
   createdAt: string;
   title: string;
   content: string;
-  doneAt: string[];
+  done: boolean;
 }
 
 export interface habit {
