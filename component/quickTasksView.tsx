@@ -7,7 +7,7 @@ import { QuickTasksViewProps } from "@/type/component";
 import { task } from "@/type/general";
 import useLocalStorageState from "use-local-storage-state";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { CheckCircle, Circle } from "lucide-react";
+import { Square, SquareCheck } from "lucide-react";
 
 // Creating and exporting QuickTasksView component as default
 export default function QuickTasksView({ className }: QuickTasksViewProps) {
@@ -36,8 +36,14 @@ export default function QuickTasksView({ className }: QuickTasksViewProps) {
           <ul className="list-inside">
             {tasksToRender.map((item, index) => (
               <li key={index}>
-                {item.done ? <CheckCircle /> : <Circle />}
-                {item.title}
+                {item.done ? (
+                  <SquareCheck className="inline-flex mr-2 size-4 shrink-0" />
+                ) : (
+                  <Square className="inline-flex mr-2 size-4 shrink-0" />
+                )}
+                <span className="text-left truncate inline-flex text-sm">
+                  {item.title}
+                </span>
               </li>
             ))}
           </ul>
