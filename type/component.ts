@@ -26,6 +26,7 @@ export interface BannerProps {
   src: string;
   title: string;
   onMenuClick?: () => void;
+  imageClassName?: string;
 }
 
 export interface ImageFallBackProps {

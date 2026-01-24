@@ -18,8 +18,6 @@ import {
   ProjectsLocalStorageType,
   TasksLocalStorageType,
 } from "@/type/localStorage";
-import { Button } from "./ui/button";
-import moment from "moment";
 
 // Creating and exporting DashboardLayout component as default
 export default function DashboardLayout({
@@ -63,6 +61,7 @@ export default function DashboardLayout({
       <div className="flex-1 h-full overflow-auto">
         <Banner
           src={SilkImage.src}
+          imageClassName="dark:invert"
           title={bannerTitle}
           onMenuClick={() => setNavBarOpen((prev) => !prev)}
         />

@@ -14,6 +14,7 @@ export default function Banner({
   src,
   title,
   className,
+  imageClassName,
   onMenuClick,
 }: BannerProps) {
   // Returning JSX
@@ -23,7 +24,10 @@ export default function Banner({
         alt={"Banner"}
         width={1000}
         height={1000}
-        className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none select-none"
+        className={cn(
+          "absolute top-0 left-0 w-full h-full object-cover pointer-events-none select-none",
+          imageClassName,
+        )}
         src={src}
       />
       <div className="relative max-w-4xl p-4 mx-auto prose dark:prose-invert prose-neutral">
