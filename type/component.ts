@@ -75,3 +75,8 @@ export interface QuickJournalViewProps {
 export interface QuickTasksViewProps {
   className?: string;
 }
+
+export interface CustomDialogProps {
+  onOpenChange?: (open: boolean) => void;
+  open?: boolean;
+}

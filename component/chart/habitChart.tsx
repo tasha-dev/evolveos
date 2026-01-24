@@ -14,8 +14,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/component/ui/chart";
-import { getLast30DaysHabitPoints } from "@/lib/util";
-import { HabitPoint } from "@/type/util";
 
 // Defining chart config
 const chartConfig = {
@@ -29,9 +27,7 @@ const chartConfig = {
 export default function HabitChart({ className }: HabitChartProps) {
   // Defining hooks
   const [habits] = useLocalStorageState<habit[]>("habits");
-  const chartData: HabitPoint[] = habits
-    ? getLast30DaysHabitPoints(habits)
-    : [];
+  const chartData = habits;
 
   // Returning JSX
   return (
