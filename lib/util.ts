@@ -157,3 +157,7 @@ export function getThisWeekItems(
   // Returning part
   return groupByWeekDay(arrayToReturn);
 }
+
+export function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

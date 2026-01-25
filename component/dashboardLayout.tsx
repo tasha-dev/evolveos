@@ -24,6 +24,7 @@ export default function DashboardLayout({
   className,
   bannerTitle,
   bannerSrc,
+  ctaButton,
 }: DashboardLayoutProps) {
   // Defining hooks
   const [navbarOpen, setNavBarOpen] = useState<boolean>(false);
@@ -61,6 +62,7 @@ export default function DashboardLayout({
       <div className="flex-1 h-full overflow-auto">
         <Banner
           src={bannerSrc}
+          ctaButton={ctaButton}
           title={bannerTitle}
           onMenuClick={() => setNavBarOpen((prev) => !prev)}
         />

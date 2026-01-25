@@ -14,10 +14,11 @@ import {
   Repeat,
   X,
 } from "lucide-react";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/util";
 import Link from "next/link";
+import useKeyboard from "@/hook/useKeyboard";
 
 // Defining data of nav bar to render
 const data: {
@@ -77,6 +78,17 @@ const data: {
 
 // Creating and exporting NavBar component as default
 export default function NavBar({ open, onOpenChange }: NavBarProps) {
+  // Defining hooks
+  useKeyboard(
+    "escape",
+    () => {
+      if (open && onOpenChange) {
+        onOpenChange?.(false);
+      }
+    },
+    [open, onOpenChange],
+  );
+
   // Returning JSX
   return (
     <>

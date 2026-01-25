@@ -6,6 +6,7 @@ import { RootLayoutProps } from "@/type/component";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/util";
+import { Toaster } from "@/component/ui/sonner";
 
 // Defining metadata
 export const metadata: Metadata = {
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             interFont.className,
           )}
         >
+          <Toaster />
           {children}
         </body>
       </ThemeProvider>

@@ -8,6 +8,7 @@ import { journal } from "@/type/general";
 import useLocalStorageState from "use-local-storage-state";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import DashboardListItem from "./dashboardListItem";
+import moment from "moment";
 
 // Creating and exporting QuickJournalView component as default
 export default function QuickJournalView({ className }: QuickJournalViewProps) {
@@ -37,7 +38,7 @@ export default function QuickJournalView({ className }: QuickJournalViewProps) {
               <DashboardListItem
                 key={index}
                 title={item.title}
-                date={item.createdAt}
+                date={moment(item.createdAt).format("YYYY/MM/DD HH:MM")}
                 icon={"circle"}
               />
             ))}

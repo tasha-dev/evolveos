@@ -27,6 +27,7 @@ export interface BannerProps {
   title: string;
   onMenuClick?: () => void;
   imageClassName?: string;
+  ctaButton?: ReactNode;
 }
 
 export interface ImageFallBackProps {
@@ -42,6 +43,7 @@ export interface DashboardLayoutProps {
   className?: string;
   bannerTitle: string;
   bannerSrc: string;
+  ctaButton?: ReactNode;
 }
 
 export interface NavBarProps {
@@ -91,5 +93,9 @@ export interface DashboardListItemProps {
 }
 
 export interface CalendarProps {
+  className?: string;
+}
+
+export interface JournalsContainerProps {
   className?: string;
 }
