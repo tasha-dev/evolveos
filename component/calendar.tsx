@@ -3,33 +3,38 @@
 "use client";
 
 // Importing part
-import { cn } from "@/lib/util";
+import { cn, getDaysOfThisWeek, getThisWeekItems } from "@/lib/util";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { CalendarProps } from "@/type/component";
 import moment from "moment";
-import { CheckSquare, Square } from "lucide-react";
 import useLocalStorageState from "use-local-storage-state";
 import {
   HabitsLocalStorageType,
+  ProjectsLocalStorageType,
   TasksLocalStorageType,
 } from "@/type/localStorage";
-
-// Defining global variables
-const weekdays = [
-  "monday",
-  "tuesday",
-  "wendesday",
-  "thurdsay",
-  "friday",
-  "saturday",
-  "sunday",
-];
+import {
+  Brain,
+  CalendarArrowDown,
+  CalendarArrowUp,
+  Clipboard,
+} from "lucide-react";
+import { TooltipContent, TooltipTrigger, Tooltip } from "./ui/tooltip";
 
 // Creating ane exporting Calendar component as default
 export default function Calendar({ className }: CalendarProps) {
-  // Defining hooks of component
+  // Defining hooks
   const [tasks] = useLocalStorageState<TasksLocalStorageType>("tasks");
   const [habits] = useLocalStorageState<HabitsLocalStorageType>("habits");
+  const [projects] = useLocalStorageState<ProjectsLocalStorageType>("projects");
+
+  // Defining variables
+  const today = moment().format("YYYY/MM/DD");
+  const daysOfWeek = getDaysOfThisWeek();
+  const calenderItems =
+    tasks && projects && habits
+      ? getThisWeekItems(tasks, projects, habits)
+      : [];
 
   // Returning JSX
   return (
@@ -41,45 +46,76 @@ export default function Calendar({ className }: CalendarProps) {
         </CardDescription>
       </CardHeader>
       <div className="grid grid-cols-7 border-t border-t-foreground/10">
-        {weekdays.map((weekday, index) => (
+        {daysOfWeek.map((weekday, index) => (
           <div
             key={index}
             className={cn(
-              index + 1 === moment().get("weekday")
-                ? "bg-primary text-primary-foreground"
+              "not-last-of-type:border-r border-r-current/10",
+              today === weekday
+                ? "dark:bg-neutral-950 bg-neutral-100"
                 : "bg-card",
             )}
           >
-            <div className="text-current text-sm truncate text-center block border-b border-current/10 py-3">
-              {weekday}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="text-current text-sm truncate text-center block border-b border-current/10 p-3">
+                  {moment(weekday).weekday(index).format("dddd")}
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                {moment(weekday).format("YYYY MMMM DD")}
+              </TooltipContent>
+            </Tooltip>
+            <div className="flex flex-col gap-3 h-[250px] overflow-y-auto overflow-x-hidden">
+              {calenderItems[index].items.map((item, itemIndex) => (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div
+                      key={itemIndex}
+                      className="flex items-center justify-center gap-3 w-full border-b border-b-current/10 p-3"
+                    >
+                      <div className="flex items-center justify-center gap-2 flex-1">
+                        {item.type === "habit" ? (
+                          <Brain className="size-3 shrink-0 text-current" />
+                        ) : item.type === "project-deadline" ? (
+                          <CalendarArrowDown className="size-3 shrink-0 text-current" />
+                        ) : item.type === "project-start" ? (
+                          <CalendarArrowUp className="size-3 shrink-0 text-current" />
+                        ) : item.type === "task" ? (
+                          <Clipboard className="size-3 shrink-0 text-current" />
+                        ) : (
+                          false
+                        )}
+                        <span
+                          className={cn(
+                            "text-current text-left truncate block flex-1 text-xs",
+                            item.done && "line-through",
+                          )}
+                        >
+                          {item.title}
+                        </span>
+                      </div>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {`
+                        ${item.title}
+                        - On ${moment(weekday).weekday(index).format("dddd")}
+                        - ${
+                          item.type === "project-start"
+                            ? "Project Start"
+                            : item.type === "project-deadline"
+                              ? "Project Deadline"
+                              : item.type
+                        }
+                    `}
+                  </TooltipContent>
+                </Tooltip>
+              ))}
             </div>
-            <div className="p-6 flex flex-col gap-3"></div>
           </div>
         ))}
       </div>
     </Card>
   );
 }
-// {calendarData.length === 0 ? (
-//                 <span className="text-current text-left truncate block flex-1 text-xs">
-//                   There is nothing to show
-//                 </span>
-//               ) : (
-//                 calendarData.map((item, index) => (
-//                   <div
-//                     className="flex items-center justify-center gap-3"
-//                     key={index}
-//                   >
-//                     <div className="flex items-center justify-center gap-2 flex-1">
-//                       {item.done ? (
-//                         <CheckSquare className="text-current size-3 shrink-0" />
-//                       ) : (
-//                         <Square className="text-current size-3 shrink-0" />
-//                       )}
-//                       <span className="text-current text-left truncate block flex-1 text-xs">
-//                         {item.title}
-//                       </span>
-//                     </div>
-//                   </div>
-//                 ))
-//               )}
