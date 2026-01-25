@@ -4,7 +4,6 @@
 
 // Importing part
 import Banner from "@/component/banner";
-import SilkImage from "@/image/silk.png";
 import { cn } from "@/lib/util";
 import { DashboardLayoutProps } from "@/type/component";
 import { useState } from "react";
@@ -24,6 +23,7 @@ export default function DashboardLayout({
   children,
   className,
   bannerTitle,
+  bannerSrc,
 }: DashboardLayoutProps) {
   // Defining hooks
   const [navbarOpen, setNavBarOpen] = useState<boolean>(false);
@@ -60,8 +60,7 @@ export default function DashboardLayout({
       <NavBar open={navbarOpen} onOpenChange={setNavBarOpen} />
       <div className="flex-1 h-full overflow-auto">
         <Banner
-          src={SilkImage.src}
-          imageClassName="dark:invert"
+          src={bannerSrc}
           title={bannerTitle}
           onMenuClick={() => setNavBarOpen((prev) => !prev)}
         />

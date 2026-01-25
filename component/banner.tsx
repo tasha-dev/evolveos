@@ -32,16 +32,22 @@ export default function Banner({
       />
       <div className="relative max-w-4xl p-4 mx-auto prose dark:prose-invert prose-neutral">
         <div className="flex items-center justify-between gap-4">
-          <h1 className="!my-0 text-left block flex-1 truncate">{title}</h1>
+          <h1 className="text-white !my-0 text-left block flex-1 truncate">
+            {title}
+          </h1>
           <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center justify-start h-10 rounded-md px-4 font-light border border-foreground/10 bg-foreground/20 backdrop-blur-2xl ring-2 ring-transparent text-xs text-foreground transition-all duration-500">
+            <div className="flex items-center justify-start h-10 rounded-md px-4 font-light border border-white/10 bg-white/20 backdrop-blur-2xl text-xs text-white transition-all duration-500">
               <Clock className="mr-2 size-4" />
               {moment().format("YYYY/MM/DD HH:MM")}
             </div>
-            <ThemeToggler variant="blur" />
+            <ThemeToggler variant="nolightblur" />
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant={"blur"} size={"icon-lg"} onClick={onMenuClick}>
+                <Button
+                  variant={"nolightblur"}
+                  size={"icon-lg"}
+                  onClick={onMenuClick}
+                >
                   <List />
                 </Button>
               </TooltipTrigger>

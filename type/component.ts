@@ -13,7 +13,7 @@ export interface HeaderProps {
 
 export interface ThemeTogglerProps {
   className?: string;
-  variant?: "outline" | "default" | "blur";
+  variant?: "outline" | "default" | "blur" | "nolightblur";
   size?: "icon" | "icon-lg";
 }
 
@@ -41,6 +41,7 @@ export interface DashboardLayoutProps {
   children: ReactNode;
   className?: string;
   bannerTitle: string;
+  bannerSrc: string;
 }
 
 export interface NavBarProps {

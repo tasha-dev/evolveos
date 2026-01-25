@@ -8,6 +8,7 @@ import QuickJournalView from "@/component/quickJournalView";
 import QuickNotesView from "@/component/quickNotesView";
 import QuickTasksView from "@/component/quickTasksView";
 import type { Metadata } from "next";
+import DashboardBannerImage from "@/image/banner/dashboard.png";
 
 // Defining metadata
 export const metadata: Metadata = {
@@ -18,7 +19,11 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   // Returning JSX
   return (
-    <DashboardLayout bannerTitle="Dashboard" className="flex flex-col gap-4">
+    <DashboardLayout
+      bannerSrc={DashboardBannerImage.src}
+      bannerTitle="Dashboard"
+      className="flex flex-col gap-4"
+    >
       <HabitChart />
       <ProjectsShowcase />
       <div className="grid lg:grid-cols-2 gap-4">
