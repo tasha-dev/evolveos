@@ -39,21 +39,3 @@ export function getLast30DaysOfHabitScore(
   // Returning part
   return arrayToReturn;
 }
-
-export function getCalendarItems(
-  tasks: TasksLocalStorageType,
-  habits: HabitsLocalStorageType,
-): CalendarItemType[] {
-  // Defining variables
-  const today = moment().format(dateFormat);
-  const transformedHabits: CalendarItemType[] = habits.map((item) => ({
-    title: item.title,
-    type: "habit",
-    done: item.doneAt.includes(today),
-  }));
-
-  const completeArray = transformedHabits;
-
-  // Returning part
-  return completeArray;
-}

@@ -11,6 +11,7 @@ export interface note {
   id: number;
   createdAt: string;
   content: string;
+  title: string;
 }
 
 export interface task {
@@ -19,6 +20,7 @@ export interface task {
   title: string;
   content: string;
   done: boolean;
+  on: string; // ISO string of date and time, once
 }
 
 export interface project {
@@ -27,6 +29,10 @@ export interface project {
   title: string;
   content: string;
   done: boolean;
+  timing: {
+    start: string;
+    deadLine: string;
+  };
 }
 
 export interface habit {
@@ -34,4 +40,8 @@ export interface habit {
   createdAt: string;
   title: string;
   doneAt: string[];
+  on: {
+    days: 0 | 1 | 2 | 3 | 4 | 5 | 6 | "everyday";
+    time: string;
+  };
 }

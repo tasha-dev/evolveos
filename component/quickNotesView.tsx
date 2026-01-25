@@ -36,7 +36,7 @@ export default function QuickNotesView({ className }: QuickNotesViewProps) {
             {notesToRender.map((item, index) => (
               <DashboardListItem
                 key={index}
-                title={item.content}
+                title={item.title}
                 date={item.createdAt}
                 icon={"circle"}
               />

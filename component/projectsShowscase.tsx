@@ -9,6 +9,7 @@ import { TabsContent, Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import useLocalStorageState from "use-local-storage-state";
 import { ProjectsLocalStorageType } from "@/type/localStorage";
 import DashboardListItem from "./dashboardListItem";
+import moment from "moment";
 
 // Creating and exporting ProjectsShowcase component as default
 export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
@@ -46,7 +47,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
               <div className="flex flex-col gap-3">
                 {activeOnes.map((item, index) => (
                   <DashboardListItem
-                    date={item.createdAt}
+                    date={`${moment(item.timing.start).format("YYYY/MM/DD")} - ${moment(item.timing.deadLine).format("YYYY/MM/DD")}`}
                     title={item.title}
                     icon={item.done ? "square-check" : "square"}
                     key={index}

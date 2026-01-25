@@ -8,6 +8,7 @@ import { task } from "@/type/general";
 import useLocalStorageState from "use-local-storage-state";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import DashboardListItem from "./dashboardListItem";
+import moment from "moment";
 
 // Creating and exporting QuickTasksView component as default
 export default function QuickTasksView({ className }: QuickTasksViewProps) {
@@ -38,7 +39,7 @@ export default function QuickTasksView({ className }: QuickTasksViewProps) {
               <DashboardListItem
                 key={index}
                 title={item.content}
-                date={item.createdAt}
+                date={moment(item.on).format("YYYY/MM/DD")}
                 icon={item.done ? "circle-fill" : "circle"}
               />
             ))}

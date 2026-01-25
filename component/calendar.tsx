@@ -3,11 +3,11 @@
 "use client";
 
 // Importing part
-import { cn, getCalendarItems } from "@/lib/util";
+import { cn } from "@/lib/util";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { CalendarProps } from "@/type/component";
 import moment from "moment";
-import { CheckSquare, Moon, Square } from "lucide-react";
+import { CheckSquare, Square } from "lucide-react";
 import useLocalStorageState from "use-local-storage-state";
 import {
   HabitsLocalStorageType,
@@ -31,9 +31,6 @@ export default function Calendar({ className }: CalendarProps) {
   const [tasks] = useLocalStorageState<TasksLocalStorageType>("tasks");
   const [habits] = useLocalStorageState<HabitsLocalStorageType>("habits");
 
-  // Defining variables
-  const calendarData = tasks && habits ? getCalendarItems(tasks, habits) : [];
-
   // Returning JSX
   return (
     <Card className={cn("pb-0 overflow-hidden", className)}>
@@ -56,28 +53,33 @@ export default function Calendar({ className }: CalendarProps) {
             <div className="text-current text-sm truncate text-center block border-b border-current/10 py-3">
               {weekday}
             </div>
-            <div className="p-6 flex flex-col gap-3">
-              {calendarData.map((item, index) => (
-                <div
-                  className="flex items-center justify-center gap-3"
-                  key={index}
-                >
-                  <div className="flex items-center justify-center gap-2 flex-1">
-                    {item.done ? (
-                      <CheckSquare className="text-current size-3 shrink-0" />
-                    ) : (
-                      <Square className="text-current size-3 shrink-0" />
-                    )}
-                    <span className="text-current text-left truncate block flex-1 text-xs">
-                      {item.title}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <div className="p-6 flex flex-col gap-3"></div>
           </div>
         ))}
       </div>
     </Card>
   );
 }
+// {calendarData.length === 0 ? (
+//                 <span className="text-current text-left truncate block flex-1 text-xs">
+//                   There is nothing to show
+//                 </span>
+//               ) : (
+//                 calendarData.map((item, index) => (
+//                   <div
+//                     className="flex items-center justify-center gap-3"
+//                     key={index}
+//                   >
+//                     <div className="flex items-center justify-center gap-2 flex-1">
+//                       {item.done ? (
+//                         <CheckSquare className="text-current size-3 shrink-0" />
+//                       ) : (
+//                         <Square className="text-current size-3 shrink-0" />
+//                       )}
+//                       <span className="text-current text-left truncate block flex-1 text-xs">
+//                         {item.title}
+//                       </span>
+//                     </div>
+//                   </div>
+//                 ))
+//               )}

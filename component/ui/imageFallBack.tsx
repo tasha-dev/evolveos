@@ -24,7 +24,7 @@ export default function ImageFallBack({
   // Returning JSX
   return (
     <>
-      {loading && <Skeleton className={className} />}
+      {loading && <Skeleton className={cn("rounded-none", className)} />}
       {error && <div className={cn("bg-destructive", className)} />}
       <Image
         onLoadingComplete={() => {
