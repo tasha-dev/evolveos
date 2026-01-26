@@ -40,7 +40,7 @@ export default function Banner({
             {ctaButton ? (
               ctaButton
             ) : (
-              <div className="flex items-center justify-start h-10 rounded-md px-4 font-light border border-white/10 bg-white/20 backdrop-blur-2xl text-xs text-white transition-all duration-500">
+              <div className="lg:flex hidden items-center justify-start h-10 rounded-md px-4 font-light border border-white/10 bg-white/20 backdrop-blur-2xl text-xs text-white transition-all duration-500">
                 <Clock className="mr-2 size-4" />
                 {moment().format("YYYY/MM/DD HH:MM")}
               </div>
