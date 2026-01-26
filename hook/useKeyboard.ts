@@ -9,16 +9,26 @@ import { useEffect } from "react";
 export default function useKeyboard(
   key: string,
   handler: () => void,
+  ctrl?: boolean,
   deps?: any[],
 ) {
   useEffect(() => {
     function eventHandlerFn(e: KeyboardEvent) {
-      if (e.key.toLowerCase() === key.toLowerCase()) {
-        handler();
+      if (ctrl) {
+        if (e.key.toLowerCase() === key.toLowerCase() && e.ctrlKey) {
+          e.preventDefault();
+          handler();
+        }
+      } else {
+        if (e.key.toLowerCase() === key.toLowerCase()) {
+          e.preventDefault();
+          handler();
+        }
       }
     }
 
     addEventListener("keydown", eventHandlerFn);
+
     // Clean up
     return () => removeEventListener("keydown", eventHandlerFn);
   }, [key, handler, deps && [...deps]]);

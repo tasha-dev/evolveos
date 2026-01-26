@@ -120,4 +120,12 @@
   button {
     @apply cursor-pointer;
   }
+
+  .tiptap {
+    @apply outline-0;
+
+    * {
+      @apply !mt-0;
+    }
+  }
 }

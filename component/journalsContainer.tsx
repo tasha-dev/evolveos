@@ -35,7 +35,7 @@ export default function JournalsContainer({
         <div className="flex flex-col gap-4">
           {journals.map((item, index) => (
             <Link
-              href={`/dashboard/journal/${btoa(`${item.id}-${item.title}-${item.createdAt}`)}`}
+              href={`/dashboard/journal/${item.id}-${item.title}-${item.createdAt}`}
               className={"flex items-center justify-between gap-4 w-full"}
               key={index}
             >

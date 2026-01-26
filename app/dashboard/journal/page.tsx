@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   title: "Journal",
 };
 
-// Creating and exporting Dashboard page as default
-export default function DashboardPage() {
+// Creating and exporting Journal page as default
+export default function JournalPage() {
   // Returning JSX
   return (
     <DashboardLayout

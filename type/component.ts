@@ -99,3 +99,9 @@ export interface CalendarProps {
 export interface JournalsContainerProps {
   className?: string;
 }
+
+export interface MarkdownEditorProps {
+  onChange?: (markdownContent: string) => void;
+  className?: string;
+  defaultValue?: string;
+}
