@@ -20,6 +20,7 @@ import MarkdownEditor from "../markdownEditor";
 import { Pen, Trash } from "lucide-react";
 import { useState } from "react";
 import DeleteJournal from "../dialog/journal/deleteJournal";
+import EditJournal from "../dialog/journal/editJournal";
 
 // Creating and exporting JournalCard component as default
 export default function JournalCard({
@@ -36,6 +37,14 @@ export default function JournalCard({
       <DeleteJournal
         open={deleteOpened}
         onOpenChange={setDeleteOpened}
+        data={{
+          id,
+          title,
+        }}
+      />
+      <EditJournal
+        open={editOpened}
+        onOpenChange={setEditOpened}
         data={{
           id,
           title,

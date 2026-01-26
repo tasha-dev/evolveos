@@ -119,3 +119,5 @@ export interface DeleteJournalDialogProps extends CustomDialogProps {
     title: string;
   };
 }
+
+export type EditJouranlDialogProps = DeleteJournalDialogProps;

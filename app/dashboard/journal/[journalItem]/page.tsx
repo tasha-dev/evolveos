@@ -19,7 +19,7 @@ import { toast } from "sonner";
 export default function JournalItemPage({ params }: JournalItemPageProps) {
   // Defining hooks
   const { journalItem } = use(params);
-  const [id, title, createdAt] = journalItem.split("-");
+  const [id, title] = journalItem.split("-");
   const [editorContent, setEditorContent] = useState<string>("");
   const [journalsLocalStorage, setJournals] =
     useLocalStorageState<JournalsLocalStorageType>("journals");

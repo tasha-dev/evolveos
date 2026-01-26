@@ -43,9 +43,11 @@ export default function DeleteJournal({
     await sleep(3000);
 
     setJournals(journalsToSet);
-    toast.success("The journal item has been permanently removed.");
     onOpenChange?.(false);
     setLoading(false);
+
+    toast.success("The journal item has been permanently removed.");
+    // toast.error("Could not delete the journal item. Please try again.");
   };
 
   // Returning JSX
