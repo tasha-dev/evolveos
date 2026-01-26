@@ -15,12 +15,14 @@ export default function MarkdownEditor({
   className,
   defaultValue,
   onChange,
+  readonly = false,
 }: MarkdownEditorProps) {
   // Defining hooks
   const editor = useEditor({
     extensions: [StarterKit, Markdown.configure({})],
     injectCSS: false,
     immediatelyRender: true,
+    editable: !readonly,
     onUpdate: ({ editor }) => {
       if (editor) {
         onChange?.(editor.getMarkdown());

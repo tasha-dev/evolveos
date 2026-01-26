@@ -4,7 +4,7 @@ import DashboardLayout from "@/component/dashboard/dashboardLayout";
 import type { Metadata } from "next";
 import JournalBannerImage from "@/image/banner/journal.png";
 import JournalsContainer from "@/component/container/journalsContainer";
-import AddJournal from "@/component/dialog/addJournal";
+import AddJournal from "@/component/dialog/journal/addJournal";
 
 // Defining metadata
 export const metadata: Metadata = {

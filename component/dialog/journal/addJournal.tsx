@@ -4,7 +4,7 @@
 
 // Importing part
 import { Loader2, Plus } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/component/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -14,8 +14,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+} from "@/component/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/component/ui/tooltip";
 import { useState } from "react";
 import { AddJournalFormSchema as FormSchema } from "@/lib/formSchema";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -29,8 +33,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+} from "@/component/ui/form";
+import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
 import useLocalStorageState from "use-local-storage-state";
 import { JournalsLocalStorageType } from "@/type/localStorage";
@@ -69,6 +73,7 @@ export default function AddJournal() {
     await sleep(3000);
 
     setJournals(journalsToSet);
+    setOpened(false);
     toast.success("Your entry was added successfully.");
     // toast.error("Something went wrong. Please try again.")
   };
@@ -127,7 +132,7 @@ export default function AddJournal() {
             <DialogFooter className="mt-5">
               <DialogClose asChild>
                 <Button
-                  variant={"secondary"}
+                  variant={"ghost"}
                   size="lg"
                   type="button"
                   disabled={form.formState.isSubmitting}

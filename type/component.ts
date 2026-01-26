@@ -1,6 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
 import { ReactNode } from "react";
+import { journal } from "./general";
 
 // Creating and exporting type of props in components
 export interface RootLayoutProps {
@@ -104,4 +105,17 @@ export interface MarkdownEditorProps {
   onChange?: (markdownContent: string) => void;
   className?: string;
   defaultValue?: string;
+  readonly?: boolean;
+}
+
+export interface JournalCardProps {
+  data: journal;
+  className?: string;
+}
+
+export interface DeleteJournalDialogProps extends CustomDialogProps {
+  data: {
+    id: number;
+    title: string;
+  };
 }
