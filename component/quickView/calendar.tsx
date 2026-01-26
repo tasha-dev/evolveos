@@ -4,7 +4,12 @@
 
 // Importing part
 import { cn, getDaysOfThisWeek, getThisWeekItems } from "@/lib/util";
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/component/ui/card";
 import { CalendarProps } from "@/type/component";
 import moment from "moment";
 import useLocalStorageState from "use-local-storage-state";
@@ -19,7 +24,11 @@ import {
   CalendarArrowUp,
   Clipboard,
 } from "lucide-react";
-import { TooltipContent, TooltipTrigger, Tooltip } from "./ui/tooltip";
+import {
+  TooltipContent,
+  TooltipTrigger,
+  Tooltip,
+} from "@/component/ui/tooltip";
 
 // Creating ane exporting Calendar component as default
 export default function Calendar({ className }: CalendarProps) {

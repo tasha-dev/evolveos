@@ -4,11 +4,16 @@
 
 // Importing part
 import { ProjectsShowcaseProps } from "@/type/component";
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { TabsContent, Tabs, TabsList, TabsTrigger } from "./ui/tabs";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/component/ui/card";
+import { TabsContent, Tabs, TabsList, TabsTrigger } from "@/component/ui/tabs";
 import useLocalStorageState from "use-local-storage-state";
 import { ProjectsLocalStorageType } from "@/type/localStorage";
-import DashboardListItem from "./dashboardListItem";
+import DashboardListItem from "@/component/dashboard/dashboardListItem";
 import moment from "moment";
 
 // Creating and exporting ProjectsShowcase component as default

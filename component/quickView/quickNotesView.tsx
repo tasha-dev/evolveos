@@ -6,8 +6,13 @@
 import { QuickNotesViewProps } from "@/type/component";
 import { note } from "@/type/general";
 import useLocalStorageState from "use-local-storage-state";
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import DashboardListItem from "./dashboardListItem";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/component/ui/card";
+import DashboardListItem from "@/component/dashboard/dashboardListItem";
 
 // Creating and exporting QuickNotesView component as default
 export default function QuickNotesView({ className }: QuickNotesViewProps) {

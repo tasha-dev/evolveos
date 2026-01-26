@@ -1,12 +1,12 @@
 // Codes by mahdi tasha
 // Importing part
-import Calendar from "@/component/calendar";
+import Calendar from "@/component/quickView/calendar";
 import HabitChart from "@/component/chart/habitChart";
-import DashboardLayout from "@/component/dashboardLayout";
-import ProjectsShowcase from "@/component/projectsShowscase";
-import QuickJournalView from "@/component/quickJournalView";
-import QuickNotesView from "@/component/quickNotesView";
-import QuickTasksView from "@/component/quickTasksView";
+import DashboardLayout from "@/component/dashboard/dashboardLayout";
+import ProjectsShowcase from "@/component/quickView/projectsShowscase";
+import QuickJournalView from "@/component/quickView/quickJournalView";
+import QuickNotesView from "@/component/quickView/quickNotesView";
+import QuickTasksView from "@/component/quickView/quickTasksView";
 import type { Metadata } from "next";
 import DashboardBannerImage from "@/image/banner/dashboard.png";
 

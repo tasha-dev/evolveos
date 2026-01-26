@@ -3,7 +3,7 @@
 "use client";
 
 // Importing part
-import DashboardLayout from "@/component/dashboardLayout";
+import DashboardLayout from "@/component/dashboard/dashboardLayout";
 import JournalBannerImage from "@/image/banner/journal.png";
 import { JournalItemPageProps } from "@/type/page";
 import { use, useState } from "react";

@@ -2,13 +2,11 @@
 // Importing part
 import DashboardLayout from "@/component/dashboard/dashboardLayout";
 import type { Metadata } from "next";
-import JournalBannerImage from "@/image/banner/journal.png";
-import JournalsContainer from "@/component/container/journalsContainer";
-import AddJournal from "@/component/dialog/addJournal";
+import TasksBannerImage from "@/image/banner/tasks.png";
 
 // Defining metadata
 export const metadata: Metadata = {
-  title: "Journal",
+  title: "Tasks",
 };
 
 // Creating and exporting Journal page as default
@@ -16,12 +14,11 @@ export default function JournalPage() {
   // Returning JSX
   return (
     <DashboardLayout
-      bannerSrc={JournalBannerImage.src}
-      bannerTitle="Journal"
-      ctaButton={<AddJournal />}
+      bannerSrc={TasksBannerImage.src}
+      bannerTitle="Tasks"
       className="flex flex-col gap-4"
     >
-      <JournalsContainer />
+      HIHIHIH
     </DashboardLayout>
   );
 }

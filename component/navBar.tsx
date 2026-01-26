@@ -14,7 +14,7 @@ import {
   Repeat,
   X,
 } from "lucide-react";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/util";
 import Link from "next/link";
@@ -86,6 +86,7 @@ export default function NavBar({ open, onOpenChange }: NavBarProps) {
         onOpenChange?.(false);
       }
     },
+    false,
     [open, onOpenChange],
   );
 

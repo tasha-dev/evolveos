@@ -7,9 +7,9 @@ import Banner from "@/component/banner";
 import { cn } from "@/lib/util";
 import { DashboardLayoutProps } from "@/type/component";
 import { useState } from "react";
-import NavBar from "./navBar";
+import NavBar from "@/component/navBar";
 import useLocalStorageState from "use-local-storage-state";
-import Greeting from "./dialog/greeting";
+import Greeting from "@/component/dialog/greeting";
 import {
   HabitsLocalStorageType,
   JournalsLocalStorageType,

@@ -6,8 +6,13 @@
 import { QuickTasksViewProps } from "@/type/component";
 import { task } from "@/type/general";
 import useLocalStorageState from "use-local-storage-state";
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import DashboardListItem from "./dashboardListItem";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/component/ui/card";
+import DashboardListItem from "@/component/dashboard/dashboardListItem";
 import moment from "moment";
 
 // Creating and exporting QuickTasksView component as default
