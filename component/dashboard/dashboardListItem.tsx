@@ -14,7 +14,7 @@ export default function DashboardListItem({
   // Returning JSX
   return (
     <div className={cn("flex items-center justify-between gap-4", className)}>
-      <div className="flex items-center justify-between gap-2 flex-1">
+      <div className="flex items-center justify-between gap-2 flex-1 overflow-hidden">
         {icon === "square" ? (
           <Square className="size-4 shrink-0 text-foreground" />
         ) : icon === "square-check" ? (

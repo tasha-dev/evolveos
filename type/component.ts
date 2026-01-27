@@ -136,3 +136,10 @@ export interface TaskItemProps {
 export interface DeleteTasksDialogProps {
   id: number;
 }
+
+export interface EditTasksDialogProps {
+  data: {
+    id: number;
+    title: string;
+  };
+}

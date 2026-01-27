@@ -25,7 +25,7 @@ export default function TasksContainer({ className }: ContainerProps) {
           There is nothing to show
         </h3>
       ) : (
-        <div className="flex gap-4 w-full">
+        <div className="flex gap-8 w-full flex-col">
           {tasks.map((item, index) => (
             <TaskItem key={index} data={item} />
           ))}

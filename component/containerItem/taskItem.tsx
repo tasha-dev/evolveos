@@ -7,6 +7,7 @@ import { cn } from "@/lib/util";
 import useLocalStorageState from "use-local-storage-state";
 import { TasksLocalStorageType } from "@/type/localStorage";
 import DeleteTask from "../dialog/tasks/deleteTask";
+import EditTask from "../dialog/tasks/editTask";
 
 // Creating and exporting TaskItem component as default
 export default function TaskItem({
@@ -43,7 +44,7 @@ export default function TaskItem({
         className,
       )}
     >
-      <div className="flex items-center justify-start gap-3 w-full">
+      <div className="flex items-center justify-start gap-3 w-full flex-1 overflow-hidden">
         <Checkbox
           checked={done}
           className="size-5 shrink-0"
@@ -53,11 +54,12 @@ export default function TaskItem({
           {title}
         </span>
       </div>
-      <div className=" shrink-0 flex items-center justify-end gap-3">
-        <span className="text-sm text-muted-foreground text-right">
+      <div className="flex items-center justify-end gap-3">
+        <span className="text-sm text-muted-foreground text-left truncate block">
           {moment(createdAt).format("YYYY MMMM DD")}
         </span>
         <DeleteTask id={id} />
+        <EditTask data={{ id, title }} />
       </div>
     </div>
   );

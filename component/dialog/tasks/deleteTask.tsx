@@ -59,7 +59,7 @@ export default function DeleteTask({ id }: DeleteTasksDialogProps) {
       }}
     >
       <DialogTrigger asChild>
-        <Button variant={"destructive"} size="icon-sm">
+        <Button variant={"destructive"} size="icon-sm" className="shrink-0">
           <Trash />
         </Button>
       </DialogTrigger>

@@ -13,15 +13,16 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/component/ui/dialog";
-import { AddJournalFormSchema as FormSchema } from "@/lib/formSchema";
+import { useState } from "react";
+import { AddTaskFormSchema as FormSchema } from "@/lib/formSchema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -30,19 +31,18 @@ import {
 import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
 import useLocalStorageState from "use-local-storage-state";
-import { JournalsLocalStorageType } from "@/type/localStorage";
+import { TasksLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
-import { EditJouranlDialogProps } from "@/type/component";
+import { EditTasksDialogProps } from "@/type/component";
 
-// Creating and exporting EditJournal Dialog as default
-export default function EditJournal({
+// Creating and exporting EditTasks Dialog as default
+export default function EditTask({
   data: { id, title },
-  onOpenChange,
-  open,
-}: EditJouranlDialogProps) {
+}: EditTasksDialogProps) {
   // Defining hooks
-  const [journalsLocalStorage, setJournals] =
-    useLocalStorageState<JournalsLocalStorageType>("journals");
+  const [open, setOpened] = useState<boolean>(false);
+  const [tasksLocalStorage, setTasks] =
+    useLocalStorageState<TasksLocalStorageType>("tasks");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -52,13 +52,13 @@ export default function EditJournal({
   });
 
   // Defining variables
-  const journals = journalsLocalStorage ? [...journalsLocalStorage] : [];
+  const tasks = tasksLocalStorage ? [...tasksLocalStorage] : [];
 
   // Defining submit handler
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const journalsToSet = journals.map((item) =>
+    const tasksToSet = tasks.map((item) =>
       item.id === id
         ? {
             ...item,
@@ -69,10 +69,10 @@ export default function EditJournal({
 
     await sleep(3000);
 
-    setJournals(journalsToSet);
-    onOpenChange?.(false);
-    toast.success("Your entry was edited successfully.");
-    // toast.error("There was an error while trying to edit yourentry. Please try again.");
+    setTasks(tasksToSet);
+    setOpened(false);
+    toast.success("Your changes are saved.");
+    // toast.error("Something went wrong. Please try again.")
   };
 
   // Returning JSX
@@ -81,16 +81,26 @@ export default function EditJournal({
       open={open}
       onOpenChange={(open) => {
         if (!form.formState.isSubmitting) {
-          onOpenChange?.(open);
+          setOpened(open);
         }
       }}
     >
+      <DialogTrigger asChild>
+        <Button
+          variant={"ghost"}
+          size={"icon-sm"}
+          className="shrink-0"
+          onClick={() => setOpened(true)}
+        >
+          <Pen />
+        </Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit Journal</DialogTitle>
+          <DialogTitle>Edit task</DialogTitle>
           <DialogDescription>
-            Refine your thoughts, revisit reflections, or polish moments —
-            making them truly yours.
+            Refine your task to stay aligned with your goals. Small adjustments
+            can make a big difference.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -103,12 +113,11 @@ export default function EditJournal({
                   <FormLabel>Title</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="The great war (me vs me)"
+                      placeholder="What do you want to do?"
                       type="text"
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>What’s this entry about?</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -134,7 +143,7 @@ export default function EditJournal({
                 ) : (
                   <Pen />
                 )}
-                Save Entry
+                Save Changes
               </Button>
             </DialogFooter>
           </form>
