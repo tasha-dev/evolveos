@@ -1,7 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
 import { ReactNode } from "react";
-import { journal } from "./general";
+import { journal, task } from "./general";
 
 // Creating and exporting type of props in components
 export interface RootLayoutProps {
@@ -97,7 +97,7 @@ export interface CalendarProps {
   className?: string;
 }
 
-export interface JournalsContainerProps {
+export interface ContainerProps {
   className?: string;
 }
 
@@ -121,3 +121,14 @@ export interface DeleteJournalDialogProps extends CustomDialogProps {
 }
 
 export type EditJouranlDialogProps = DeleteJournalDialogProps;
+
+export interface CheckboxProps {
+  className?: string;
+  checked?: boolean;
+  onCheckChange?: (checked: boolean) => void;
+}
+
+export interface TaskItemProps {
+  data: task;
+  className?: string;
+}

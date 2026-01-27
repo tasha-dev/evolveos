@@ -58,11 +58,7 @@ export default function JournalItemPage({ params }: JournalItemPageProps) {
   // Conditional rendering
   if (journalInLocalStorage) {
     return (
-      <DashboardLayout
-        bannerSrc={JournalBannerImage.src}
-        bannerTitle={title}
-        className="flex flex-col gap-4"
-      >
+      <DashboardLayout bannerSrc={JournalBannerImage.src} bannerTitle={title}>
         <MarkdownEditor
           defaultValue={journalInLocalStorage.content}
           onChange={setEditorContent}

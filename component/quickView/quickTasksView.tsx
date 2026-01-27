@@ -42,10 +42,14 @@ export default function QuickTasksView({ className }: QuickTasksViewProps) {
           <div className="flex flex-col gap-3">
             {tasksToRender.map((item, index) => (
               <DashboardListItem
-                key={index}
-                title={item.content}
-                date={moment(item.on).format("YYYY/MM/DD")}
                 icon={item.done ? "circle-fill" : "circle"}
+                key={index}
+                title={item.title}
+                date={
+                  item.on.days !== "everyday"
+                    ? `${moment().weekday(item.on.days).format("dddd")} ${item.on.time}`
+                    : item.on.time
+                }
               />
             ))}
           </div>

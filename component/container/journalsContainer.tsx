@@ -3,16 +3,14 @@
 "use client";
 
 // Importing part
-import { JournalsContainerProps } from "@/type/component";
+import { ContainerProps } from "@/type/component";
 import { journal } from "@/type/general";
 import { JournalsLocalStorageType } from "@/type/localStorage";
 import useLocalStorageState from "use-local-storage-state";
-import JournalCard from "../card/journalCard";
+import JournalCard from "../containerItem/journalCard";
 
 // Creating and exporting JournalsContainer component as default
-export default function JournalsContainer({
-  className,
-}: JournalsContainerProps) {
+export default function JournalsContainer({ className }: ContainerProps) {
   // Defining hooks
   const [journalsLocalStorage] =
     useLocalStorageState<JournalsLocalStorageType>("journals");

@@ -19,7 +19,6 @@ export default function JournalPage() {
       bannerSrc={JournalBannerImage.src}
       bannerTitle="Journal"
       ctaButton={<AddJournal />}
-      className="flex flex-col gap-4"
     >
       <JournalsContainer />
     </DashboardLayout>
