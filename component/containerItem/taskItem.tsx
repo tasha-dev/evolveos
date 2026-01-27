@@ -6,6 +6,7 @@ import moment from "moment";
 import { cn } from "@/lib/util";
 import useLocalStorageState from "use-local-storage-state";
 import { TasksLocalStorageType } from "@/type/localStorage";
+import DeleteTask from "../dialog/tasks/deleteTask";
 
 // Creating and exporting TaskItem component as default
 export default function TaskItem({
@@ -52,9 +53,12 @@ export default function TaskItem({
           {title}
         </span>
       </div>
-      <span className="text-sm text-muted-foreground text-right shrink-0">
-        {moment(createdAt).format("YYYY MMMM DD | HH:MM")}
-      </span>
+      <div className=" shrink-0 flex items-center justify-end gap-3">
+        <span className="text-sm text-muted-foreground text-right">
+          {moment(createdAt).format("YYYY MMMM DD")}
+        </span>
+        <DeleteTask id={id} />
+      </div>
     </div>
   );
 }
