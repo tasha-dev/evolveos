@@ -75,35 +75,33 @@ export default function Calendar({ className }: CalendarProps) {
                 {moment(weekday).format("YYYY MMMM DD")}
               </TooltipContent>
             </Tooltip>
-            <div className="flex flex-col gap-3 h-[250px] overflow-y-auto overflow-x-hidden">
+            <div className="flex flex-col h-[250px] overflow-y-auto overflow-x-hidden">
               {calenderItems[index].items.map((item, itemIndex) => (
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <div
                       key={itemIndex}
-                      className="flex items-center justify-center gap-3 w-full border-b border-b-current/10 p-3"
+                      className="flex items-center justify-center gap-2 w-full border-b border-b-current/10 p-3"
                     >
-                      <div className="flex items-center justify-center gap-2 flex-1">
-                        {item.type === "habit" ? (
-                          <Brain className="size-3 shrink-0 text-current" />
-                        ) : item.type === "project-deadline" ? (
-                          <CalendarArrowDown className="size-3 shrink-0 text-current" />
-                        ) : item.type === "project-start" ? (
-                          <CalendarArrowUp className="size-3 shrink-0 text-current" />
-                        ) : item.type === "task" ? (
-                          <Clipboard className="size-3 shrink-0 text-current" />
-                        ) : (
-                          false
+                      {item.type === "habit" ? (
+                        <Brain className="size-3 shrink-0 text-current" />
+                      ) : item.type === "project-deadline" ? (
+                        <CalendarArrowDown className="size-3 shrink-0 text-current" />
+                      ) : item.type === "project-start" ? (
+                        <CalendarArrowUp className="size-3 shrink-0 text-current" />
+                      ) : item.type === "task" ? (
+                        <Clipboard className="size-3 shrink-0 text-current" />
+                      ) : (
+                        false
+                      )}
+                      <span
+                        className={cn(
+                          "text-current text-left truncate block flex-1 text-xs",
+                          item.done && "line-through",
                         )}
-                        <span
-                          className={cn(
-                            "text-current text-left truncate block flex-1 text-xs",
-                            item.done && "line-through",
-                          )}
-                        >
-                          {item.title}
-                        </span>
-                      </div>
+                      >
+                        {item.title}
+                      </span>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>

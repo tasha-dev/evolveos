@@ -45,11 +45,7 @@ export default function QuickTasksView({ className }: QuickTasksViewProps) {
                 icon={item.done ? "circle-fill" : "circle"}
                 key={index}
                 title={item.title}
-                date={
-                  item.on.days !== "everyday"
-                    ? `${moment().weekday(item.on.days).format("dddd")} ${item.on.time}`
-                    : item.on.time
-                }
+                date={moment(item.createdAt).format("YYYY/MM/DD")}
               />
             ))}
           </div>
