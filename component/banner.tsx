@@ -8,6 +8,7 @@ import ThemeToggler from "./ui/themeToggler";
 import ImageFallBack from "./ui/imageFallBack";
 import { Button } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { Kbd } from "./ui/kbd";
 
 // Creating and exporting Banner component as default
 export default function Banner({
@@ -56,7 +57,9 @@ export default function Banner({
                   <List />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>Open menu</TooltipContent>
+              <TooltipContent>
+                Open nav bar <Kbd className="ml-[1ch]">Ctrl + m</Kbd>
+              </TooltipContent>
             </Tooltip>
           </div>
         </div>

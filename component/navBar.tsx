@@ -80,6 +80,17 @@ const data: {
 export default function NavBar({ open, onOpenChange }: NavBarProps) {
   // Defining hooks
   useKeyboard(
+    "m",
+    () => {
+      if (onOpenChange) {
+        onOpenChange?.(!open);
+      }
+    },
+    true,
+    [open, onOpenChange],
+  );
+
+  useKeyboard(
     "escape",
     () => {
       if (open && onOpenChange) {

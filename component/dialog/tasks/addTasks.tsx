@@ -39,6 +39,8 @@ import useLocalStorageState from "use-local-storage-state";
 import { TasksLocalStorageType } from "@/type/localStorage";
 import { task } from "@/type/general";
 import { toast } from "sonner";
+import { Kbd } from "@/component/ui/kbd";
+import useKeyboard from "@/hook/useKeyboard";
 
 // Creating and exporting AddTasks Dialog as default
 export default function AddTasks() {
@@ -50,6 +52,8 @@ export default function AddTasks() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
+
+  useKeyboard("a", () => setOpened((prev) => !prev), true, [open, setOpened]);
 
   // Defining variables
   const tasks = tasksLocalStorage ? [...tasksLocalStorage] : [];
@@ -97,7 +101,9 @@ export default function AddTasks() {
               <Plus />
             </Button>
           </TooltipTrigger>
-          <TooltipContent>Add a New Task</TooltipContent>
+          <TooltipContent>
+            Add a New Task <Kbd className="ml-[1ch]">Ctrl + a</Kbd>
+          </TooltipContent>
         </Tooltip>
       </DialogTrigger>
       <DialogContent>

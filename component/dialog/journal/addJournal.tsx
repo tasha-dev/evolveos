@@ -40,6 +40,8 @@ import useLocalStorageState from "use-local-storage-state";
 import { JournalsLocalStorageType } from "@/type/localStorage";
 import { journal } from "@/type/general";
 import { toast } from "sonner";
+import { Kbd } from "@/component/ui/kbd";
+import useKeyboard from "@/hook/useKeyboard";
 
 // Creating and exporting AddJournal Dialog as default
 export default function AddJournal() {
@@ -51,6 +53,8 @@ export default function AddJournal() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
+
+  useKeyboard("a", () => setOpened((prev) => !prev), true, [open, setOpened]);
 
   // Defining variables
   const journals = journalsLocalStorage ? [...journalsLocalStorage] : [];
@@ -99,7 +103,10 @@ export default function AddJournal() {
               <Plus />
             </Button>
           </TooltipTrigger>
-          <TooltipContent>Add new journal</TooltipContent>
+          <TooltipContent>
+            Add new journal
+            <Kbd className="ml-[1ch]">Ctrl + a</Kbd>
+          </TooltipContent>
         </Tooltip>
       </DialogTrigger>
       <DialogContent>
