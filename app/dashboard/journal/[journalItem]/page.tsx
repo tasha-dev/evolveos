@@ -14,6 +14,14 @@ import { JournalsLocalStorageType } from "@/type/localStorage";
 import { notFound } from "next/navigation";
 import useKeyboard from "@/hook/useKeyboard";
 import { toast } from "sonner";
+import { Button } from "@/component/ui/button";
+import { Save } from "lucide-react";
+import {
+  TooltipContent,
+  Tooltip,
+  TooltipTrigger,
+} from "@/component/ui/tooltip";
+import { Kbd } from "@/component/ui/kbd";
 
 // Creating and exporting JournalItem page as default
 export default function JournalItemPage({ params }: JournalItemPageProps) {
@@ -26,14 +34,7 @@ export default function JournalItemPage({ params }: JournalItemPageProps) {
     useLocalStorageState<JournalsLocalStorageType>("journals");
 
   useTitle(`${title} Journal`, [title, journalItem]);
-  useKeyboard(
-    "s",
-    () => {
-      saveJournal(editorContent);
-      toast.success("Your journal is saved successfully");
-    },
-    true,
-  );
+  useKeyboard("s", saveJournal, true);
 
   // Defining variables
   const journals = journalsLocalStorage ? [...journalsLocalStorage] : [];
@@ -42,23 +43,43 @@ export default function JournalItemPage({ params }: JournalItemPageProps) {
   });
 
   // Defining function to save the new value of journal
-  function saveJournal(newContent: string) {
+  function saveJournal() {
     const journalsToSet = journals.map((item) =>
       item.id.toString() === id && item.title === title
         ? {
             ...item,
-            content: newContent,
+            content: editorContent,
           }
         : item,
     );
 
     setJournals(journalsToSet);
+    toast.success("Your journal is saved successfully");
   }
 
   // Conditional rendering
   if (journalInLocalStorage) {
     return (
-      <DashboardLayout bannerSrc={JournalBannerImage.src} bannerTitle={title}>
+      <DashboardLayout
+        bannerSrc={JournalBannerImage.src}
+        bannerTitle={title}
+        ctaButton={
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="nolightblur"
+                size="icon-lg"
+                onClick={saveJournal}
+              >
+                <Save />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              Save Journal <Kbd className="ml-[1ch]">Ctrl + s</Kbd>
+            </TooltipContent>
+          </Tooltip>
+        }
+      >
         <MarkdownEditor
           defaultValue={journalInLocalStorage.content}
           onChange={setEditorContent}
