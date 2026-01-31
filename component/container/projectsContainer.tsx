@@ -6,6 +6,7 @@
 import { ContainerProps } from "@/type/component";
 import { ProjectsLocalStorageType } from "@/type/localStorage";
 import useLocalStorageState from "use-local-storage-state";
+import ProjectCard from "../containerItem/projectCard";
 
 // Creating and exporting ProjectsContainer component as default
 export default function ProjectsContainer({ className }: ContainerProps) {
@@ -24,11 +25,11 @@ export default function ProjectsContainer({ className }: ContainerProps) {
           There is nothing to show
         </h3>
       ) : (
-        <ul className="flex gap-8 w-full flex-col">
+        <div className="grid lg:grid-cols-2 gap-4">
           {projects.map((item, index) => (
-            <li key={index}>{item.title}</li>
+            <ProjectCard key={index} data={item} />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

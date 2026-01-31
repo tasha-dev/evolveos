@@ -1,7 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
 import { ReactNode, RefObject } from "react";
-import { journal, task } from "./general";
+import { journal, project, task } from "./general";
 
 // Creating and exporting type of props in components
 export interface RootLayoutProps {
@@ -150,4 +150,9 @@ export interface DatePickerProps {
   value?: string;
   className?: string;
   invalid?: boolean;
+}
+
+export interface ProjectCardProps {
+  className?: string;
+  data: project;
 }
