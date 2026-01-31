@@ -1,6 +1,6 @@
 // Codes by mahdi tasha
 // Importing part
-import { ReactNode } from "react";
+import { ReactNode, RefObject } from "react";
 import { journal, task } from "./general";
 
 // Creating and exporting type of props in components
@@ -50,6 +50,7 @@ export interface DashboardLayoutProps {
 export interface NavBarProps {
   open: boolean;
   onOpenChange?: (open: boolean) => void;
+  ref?: RefObject<HTMLElement | null>;
 }
 
 export interface HabitChartProps {

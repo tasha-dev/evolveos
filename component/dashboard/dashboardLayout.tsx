@@ -6,7 +6,7 @@
 import Banner from "@/component/banner";
 import { cn } from "@/lib/util";
 import { DashboardLayoutProps } from "@/type/component";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import NavBar from "@/component/navBar";
 import useLocalStorageState from "use-local-storage-state";
 import Greeting from "@/component/dialog/greeting";
@@ -54,11 +54,26 @@ export default function DashboardLayout({
     defaultValue: [],
   });
 
+  const navbarRefrence = useRef<HTMLElement | null>(null);
+
   // Returning JSX
   return (
     <div className="flex items-stretch justify-center overflow-hidden lg:h-dvh">
       {!greeting && <Greeting onOpenChange={() => setGreeting(true)} open />}
-      <NavBar open={navbarOpen} onOpenChange={setNavBarOpen} />
+      <NavBar
+        open={navbarOpen}
+        ref={navbarRefrence}
+        onOpenChange={(open) => {
+          setNavBarOpen(open);
+          if (open) {
+            const navbarElement = navbarRefrence.current;
+            const firstLink: HTMLAnchorElement | null | undefined =
+              navbarElement?.querySelector("a:first-of-type");
+
+            firstLink?.focus();
+          }
+        }}
+      />
       <div className="flex-1 h-full overflow-auto">
         <Banner
           src={bannerSrc}

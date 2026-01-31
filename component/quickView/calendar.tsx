@@ -60,7 +60,7 @@ export default function Calendar({ className }: CalendarProps) {
             key={index}
             className={cn(
               "not-last-of-type:border-r border-r-current/10",
-              today === weekday
+              moment(today).get("weekday") === index
                 ? "dark:bg-neutral-950 bg-neutral-100"
                 : "bg-card",
             )}
