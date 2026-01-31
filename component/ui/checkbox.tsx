@@ -1,38 +1,32 @@
-// Codes by mahdi tasha
-// Forcing next.js to render this component as client side component
-"use client";
+"use client"
 
-// Importing part
-import { cn } from "@/lib/util";
-import { CheckboxProps } from "@/type/component";
-import { Check } from "lucide-react";
-import { useState } from "react";
+import * as React from "react"
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
+import { CheckIcon } from "lucide-react"
 
-// Creating and exporting Checkbox component as default
-export default function Checkbox({
-  checked = false,
+import { cn } from "@/lib/util"
+
+function Checkbox({
   className,
-  onCheckChange,
-}: CheckboxProps) {
-  // Defining hooks
-  const [checkedState, setCheckedState] = useState<boolean>(checked);
-
-  // Returning JSX
+  ...props
+}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
   return (
-    <button
-      data-checked={checkedState}
-      onClick={() => {
-        setCheckedState((prev) => !prev);
-        onCheckChange?.(checkedState);
-      }}
+    <CheckboxPrimitive.Root
+      data-slot="checkbox"
       className={cn(
-        "size-4 rounded-xs bg-transparent transition-all duration-500 border text-background border-foreground flex items-center justify-center p-0.5",
-        "data-[checked=false]:bg-transparent",
-        "data-[checked=true]:bg-foreground data-[checked=true]:text-background",
-        className,
+        "peer border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
+        className
       )}
+      {...props}
     >
-      <Check className="w-full" />
-    </button>
-  );
+      <CheckboxPrimitive.Indicator
+        data-slot="checkbox-indicator"
+        className="grid place-content-center text-current transition-none"
+      >
+        <CheckIcon className="size-3.5" />
+      </CheckboxPrimitive.Indicator>
+    </CheckboxPrimitive.Root>
+  )
 }
+
+export { Checkbox }

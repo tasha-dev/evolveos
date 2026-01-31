@@ -87,7 +87,7 @@ export default function EditTask({
     >
       <DialogTrigger asChild>
         <Button
-          variant={"ghost"}
+          variant={"secondary"}
           size={"icon-sm"}
           className="shrink-0"
           onClick={() => setOpened(true)}

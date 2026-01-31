@@ -1,13 +1,14 @@
 // Codes by mahdi tasha
 // Importing part
 import { TaskItemProps } from "@/type/component";
-import Checkbox from "../ui/checkbox";
+import { Checkbox } from "@/component/ui/checkbox";
 import moment from "moment";
 import { cn } from "@/lib/util";
 import useLocalStorageState from "use-local-storage-state";
 import { TasksLocalStorageType } from "@/type/localStorage";
 import DeleteTask from "../dialog/tasks/deleteTask";
 import EditTask from "../dialog/tasks/editTask";
+import { useState } from "react";
 
 // Creating and exporting TaskItem component as default
 export default function TaskItem({
@@ -15,6 +16,7 @@ export default function TaskItem({
   className,
 }: TaskItemProps) {
   // Defining hooks
+  const [doneState, setDoneState] = useState<boolean>(done);
   const [tasksLocalStorage, setTasks] =
     useLocalStorageState<TasksLocalStorageType>("tasks");
 
@@ -27,7 +29,7 @@ export default function TaskItem({
       item.id === id
         ? {
             ...item,
-            done: !checked,
+            done: checked,
           }
         : item,
     );
@@ -38,7 +40,7 @@ export default function TaskItem({
   // Returning JSX
   return (
     <div
-      data-done={done}
+      data-done={doneState}
       className={cn(
         "flex items-center justify-between gap-3 w-full data-[done=false]:text-foreground data-[done=true]:text-muted-foreground group duration-500 transition-colors",
         className,
@@ -46,9 +48,14 @@ export default function TaskItem({
     >
       <div className="flex items-center justify-start gap-3 w-full flex-1 overflow-hidden">
         <Checkbox
-          checked={done}
+          checked={doneState}
           className="size-5 shrink-0"
-          onCheckChange={handleCheckboxChange}
+          onCheckedChange={(checked) => {
+            if (typeof checked !== "string") {
+              handleCheckboxChange(checked);
+              setDoneState(checked);
+            }
+          }}
         />
         <span className="font-medium text-current truncate block text-left flex-1 text-sm group-data-[done=true]:line-through">
           {title}
