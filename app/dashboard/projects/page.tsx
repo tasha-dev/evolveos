@@ -3,6 +3,8 @@
 import DashboardLayout from "@/component/dashboard/dashboardLayout";
 import type { Metadata } from "next";
 import ProjectsBannerImage from "@/image/banner/projects.png";
+import ProjectsContainer from "@/component/container/projectsContainer";
+import AddProject from "@/component/dialog/project/addProject";
 
 // Defining metadata
 export const metadata: Metadata = {
@@ -13,8 +15,12 @@ export const metadata: Metadata = {
 export default function JournalPage() {
   // Returning JSX
   return (
-    <DashboardLayout bannerSrc={ProjectsBannerImage.src} bannerTitle="Projects">
-      HI
+    <DashboardLayout
+      bannerSrc={ProjectsBannerImage.src}
+      bannerTitle="Projects"
+      ctaButton={<AddProject />}
+    >
+      <ProjectsContainer />
     </DashboardLayout>
   );
 }

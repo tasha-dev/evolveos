@@ -15,7 +15,7 @@ import moment, { Moment } from "moment";
 import { twMerge } from "tailwind-merge";
 
 // Defining variables
-const dateFormat = "YYYY/MM/DD";
+export const dateFormat = "YYYY/MM/DD";
 
 // Creating and exporting helper and utility functions
 export function cn(...inputs: ClassValue[]) {

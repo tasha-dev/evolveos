@@ -1,6 +1,8 @@
 // Codes by mahdi tasha
 // Importing part
+import moment from "moment";
 import { z } from "zod";
+import { dateFormat } from "./util";
 
 // Creating and exporting form schemas of the the whole app
 export const AddJournalFormSchema = z.object({
@@ -51,3 +53,28 @@ export const AddHabitFormSchema = z.object({
       message: "Time must be in HH:MM format (00:00 - 23:59)",
     }),
 });
+
+export const AddProjectFormSchema = z
+  .object({
+    title: z
+      .string({
+        message: "Please fill this input",
+      })
+      .min(2)
+      .max(20),
+    startDate: z
+      .string()
+      .refine((date) => moment(date, dateFormat, true).isValid(), {
+        message: "Start date is invalid",
+      }),
+
+    deadline: z
+      .string()
+      .refine((date) => moment(date, dateFormat, true).isValid(), {
+        message: "Deadline is invalid",
+      }),
+  })
+  .refine((data) => moment(data.deadline).isAfter(moment(data.startDate)), {
+    message: "Deadline must be after start date",
+    path: ["deadline"],
+  });

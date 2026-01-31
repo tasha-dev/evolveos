@@ -144,3 +144,10 @@ export interface EditTasksDialogProps {
     title: string;
   };
 }
+
+export interface DatePickerProps {
+  onValueChange?: (value: string) => void;
+  value?: string;
+  className?: string;
+  invalid?: boolean;
+}
