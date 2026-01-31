@@ -156,3 +156,12 @@ export interface ProjectCardProps {
   className?: string;
   data: project;
 }
+
+export interface EditProjectProps extends CustomDialogProps {
+  data: {
+    start: string;
+    id: number;
+    deadLine: string;
+    title: string;
+  };
+}

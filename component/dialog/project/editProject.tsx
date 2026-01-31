@@ -40,21 +40,27 @@ import { ProjectsLocalStorageType } from "@/type/localStorage";
 import { project } from "@/type/general";
 import { toast } from "sonner";
 import { Kbd } from "@/component/ui/kbd";
-import useKeyboard from "@/hook/useKeyboard";
 import DatePicker from "@/component/ui/datePicker";
+import { EditProjectProps } from "@/type/component";
 
-// Creating and exporting AddProject Dialog as default
-export default function AddProject() {
+// Creating and exporting EditProject Dialog as default
+export default function EditProject({
+  data: { deadLine, start, title, id },
+  onOpenChange,
+  open,
+}: EditProjectProps) {
   // Defining hooks
-  const [open, setOpened] = useState<boolean>(false);
   const [projectsLocalStorage, setProjects] =
     useLocalStorageState<ProjectsLocalStorageType>("projects");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      deadline: deadLine,
+      startDate: start,
+      title,
+    },
   });
-
-  useKeyboard("a", () => setOpened((prev) => !prev), true, [open, setOpened]);
 
   // Defining variables
   const projects = projectsLocalStorage ? [...projectsLocalStorage] : [];
@@ -63,27 +69,24 @@ export default function AddProject() {
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const prevIndexOfProject = projects.at(-1)?.id;
-
-    const newProject: project = {
-      done: false,
-      content: "Hello world",
-      createdAt: new Date().toISOString(),
-      id: prevIndexOfProject ? prevIndexOfProject + 1 : 1,
-      timing: {
-        deadLine: data.deadline,
-        start: data.startDate,
-      },
-      title: data.title,
-    };
-
-    const projectsToSet = [...projects, newProject];
+    const projectsToSet = projects.map((item) =>
+      item.id === id
+        ? {
+            ...item,
+            timing: {
+              deadLine: data.deadline,
+              start: data.startDate,
+            },
+            title: data.title,
+          }
+        : item,
+    );
 
     await sleep(3000);
 
     setProjects(projectsToSet);
-    setOpened(false);
-    toast.success("Project created. You’re ready to move forward.");
+    onOpenChange?.(false);
+    toast.success("Project updated. Your changes are saved.");
     // toast.error("Something went wrong. Please try again.")
   };
 
@@ -93,32 +96,16 @@ export default function AddProject() {
       open={open}
       onOpenChange={(open) => {
         if (!form.formState.isSubmitting) {
-          setOpened(open);
+          onOpenChange?.(open);
         }
       }}
     >
-      <DialogTrigger asChild>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant={"nolightblur"}
-              size={"icon-lg"}
-              onClick={() => setOpened(true)}
-            >
-              <Plus />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            Create a new project
-            <Kbd className="ml-[1ch]">Ctrl + a</Kbd>
-          </TooltipContent>
-        </Tooltip>
-      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create a new project</DialogTitle>
+          <DialogTitle>Edit project</DialogTitle>
           <DialogDescription>
-            Projects turn ideas into outcomes.
+            Adjust your project to reflect where you are now. Clarity keeps
+            progress moving.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -197,7 +184,7 @@ export default function AddProject() {
                 ) : (
                   <Plus />
                 )}
-                Create project
+                Save changes
               </Button>
             </DialogFooter>
           </form>
