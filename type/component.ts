@@ -165,3 +165,7 @@ export interface EditProjectProps extends CustomDialogProps {
     title: string;
   };
 }
+
+export interface DeleteProjectDialogProps extends CustomDialogProps {
+  id: number;
+}

@@ -22,6 +22,7 @@ import { cn, dateFormat } from "@/lib/util";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useState } from "react";
 import EditProject from "../dialog/project/editProject";
+import DeleteProject from "../dialog/project/deleteProject";
 
 // Creating and exporting ProjectCard component as default
 export default function ProjectCard({
@@ -43,14 +44,19 @@ export default function ProjectCard({
   return (
     <>
       <EditProject
+        open={editOpened}
+        onOpenChange={setEditOpened}
         data={{
           deadLine,
           start,
           id,
           title,
         }}
-        open={editOpened}
-        onOpenChange={setEditOpened}
+      />
+      <DeleteProject
+        open={deleteOpened}
+        onOpenChange={setDeleteOpened}
+        id={id}
       />
       <ContextMenu>
         <ContextMenuTrigger asChild>
