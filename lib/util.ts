@@ -25,23 +25,21 @@ export function cn(...inputs: ClassValue[]) {
 export function getLast30DaysOfHabitScore(
   habitsLocalStorage: HabitsLocalStorageType,
 ) {
-  // Defining variables
-  let arrayToReturn = [];
+  const arrayToReturn = [];
 
-  // Defining simple for loop to get last 30 days and verify them
-  for (let i = 30; i >= 0; i--) {
-    const yesterday = moment().subtract(i, "day").format(dateFormat);
-    const foundedYesterday = habitsLocalStorage.filter((item) =>
-      item.doneAt.includes(yesterday),
+  for (let i = 29; i >= 0; i--) {
+    const day = moment().subtract(i, "day").format("YYYY-MM-DD");
+
+    const doneHabits = habitsLocalStorage.filter((h) =>
+      h.doneAt.some((dateStr) => moment(dateStr).format("YYYY-MM-DD") === day),
     );
 
     arrayToReturn.push({
-      date: yesterday,
-      score: foundedYesterday ? foundedYesterday.length : 0,
+      date: day,
+      score: doneHabits.length,
     });
   }
 
-  // Returning part
   return arrayToReturn;
 }
 
@@ -51,7 +49,7 @@ export function getDaysOfThisWeek() {
   let arrayToReturn = [];
 
   // Using a for loop to get next 7 days of start of week
-  for (let i = 0; i <= 6; i++) {
+  for (let i = 0; i <= 6; i--) {
     const dayAfterStartOfWeek = startOfWeek.add(i, "day");
     arrayToReturn.push(dayAfterStartOfWeek.format(dateFormat));
   }
@@ -96,7 +94,6 @@ export function groupByWeekDay(
 }
 
 export function getThisWeekItems(
-  tasks: TasksLocalStorageType,
   projects: ProjectsLocalStorageType,
   habits: HabitsLocalStorageType,
 ): GroupedCalendarItems[] {

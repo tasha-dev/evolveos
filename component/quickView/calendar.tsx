@@ -16,7 +16,6 @@ import useLocalStorageState from "use-local-storage-state";
 import {
   HabitsLocalStorageType,
   ProjectsLocalStorageType,
-  TasksLocalStorageType,
 } from "@/type/localStorage";
 import {
   Brain,
@@ -33,7 +32,6 @@ import {
 // Creating ane exporting Calendar component as default
 export default function Calendar({ className }: CalendarProps) {
   // Defining hooks
-  const [tasks] = useLocalStorageState<TasksLocalStorageType>("tasks");
   const [habits] = useLocalStorageState<HabitsLocalStorageType>("habits");
   const [projects] = useLocalStorageState<ProjectsLocalStorageType>("projects");
 
@@ -41,9 +39,7 @@ export default function Calendar({ className }: CalendarProps) {
   const today = moment().format("YYYY/MM/DD");
   const daysOfWeek = getDaysOfThisWeek();
   const calenderItems =
-    tasks && projects && habits
-      ? getThisWeekItems(tasks, projects, habits)
-      : [];
+    projects && habits ? getThisWeekItems(projects, habits) : [];
 
   // Returning JSX
   return (
@@ -108,12 +104,13 @@ export default function Calendar({ className }: CalendarProps) {
                     {`
                         ${item.title}
                         - On ${moment(weekday).weekday(index).format("dddd")}
-                        - ${item.type === "project-start"
-                        ? "Project Start"
-                        : item.type === "project-deadline"
-                          ? "Project Deadline"
-                          : item.type
-                      }
+                        - ${
+                          item.type === "project-start"
+                            ? "Project Start"
+                            : item.type === "project-deadline"
+                              ? "Project Deadline"
+                              : item.type
+                        }
                     `}
                   </TooltipContent>
                 </Tooltip>
