@@ -13,14 +13,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/component/ui/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/component/ui/tooltip";
-import { useState } from "react";
 import { AddProjectFormSchema as FormSchema } from "@/lib/formSchema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
@@ -37,9 +30,7 @@ import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
 import useLocalStorageState from "use-local-storage-state";
 import { ProjectsLocalStorageType } from "@/type/localStorage";
-import { project } from "@/type/general";
 import { toast } from "sonner";
-import { Kbd } from "@/component/ui/kbd";
 import DatePicker from "@/component/ui/datePicker";
 import { EditProjectProps } from "@/type/component";
 

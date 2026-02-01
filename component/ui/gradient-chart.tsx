@@ -15,7 +15,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/component/ui/chart";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/component/ui/badge";
 import { TrendingUp } from "lucide-react";
 
 const chartData = [

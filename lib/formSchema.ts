@@ -56,12 +56,8 @@ export const AddHabitFormSchema = z.object({
 
 export const AddProjectFormSchema = z
   .object({
-    title: z
-      .string({
-        message: "Please fill this input",
-      })
-      .min(2)
-      .max(20),
+    title: z.string({ message: "Please fill this input" }).min(2).max(20),
+
     startDate: z
       .string()
       .refine((date) => moment(date, dateFormat, true).isValid(), {
@@ -74,7 +70,13 @@ export const AddProjectFormSchema = z
         message: "Deadline is invalid",
       }),
   })
-  .refine((data) => moment(data.deadline).isAfter(moment(data.startDate)), {
-    message: "Deadline must be after start date",
-    path: ["deadline"],
-  });
+  .refine(
+    (data) =>
+      moment(data.deadline, dateFormat, true).isAfter(
+        moment(data.startDate, dateFormat, true),
+      ),
+    {
+      message: "Deadline must be after start date",
+      path: ["deadline"],
+    },
+  );

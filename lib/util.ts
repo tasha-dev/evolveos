@@ -101,7 +101,6 @@ export function getThisWeekItems(
   habits: HabitsLocalStorageType,
 ): GroupedCalendarItems[] {
   // Defining variables
-  const tasksOfWeek = tasks.filter((item) => isInThisWeek(item.on));
   const today = moment().format(dateFormat);
   const startsOfProjectsOfWeek = projects.filter((item) =>
     isInThisWeek(item.timing.start),
@@ -112,14 +111,6 @@ export function getThisWeekItems(
   );
 
   // Reshaping the arrays
-  const formatedTasks: CalendarItemType[] = tasksOfWeek.map((item) => ({
-    title: item.title,
-    hour: moment(item.on).format("HH:MM"),
-    done: item.done,
-    on: moment(item.on).weekday() as CalenderItemWeekDayIndex,
-    type: "task",
-  }));
-
   const formatedStartsOfProjects: CalendarItemType[] =
     startsOfProjectsOfWeek.map((item) => ({
       title: item.title,
@@ -148,7 +139,6 @@ export function getThisWeekItems(
 
   // Grouping
   const arrayToReturn = [
-    ...formatedTasks,
     ...formatedStartsOfProjects,
     ...formatedDeadLineOfProjects,
     ...habitsOfWeek,

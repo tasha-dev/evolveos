@@ -70,7 +70,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
               <div className="flex flex-col gap-3">
                 {projectsCopy.map((item, index) => (
                   <DashboardListItem
-                    date={item.createdAt}
+                    date={`${moment(item.timing.start).format("YYYY/MM/DD")} - ${moment(item.timing.deadLine).format("YYYY/MM/DD")}`}
                     title={item.title}
                     icon={item.done ? "square-check" : "square"}
                     key={index}
@@ -88,7 +88,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
               <div className="flex flex-col gap-3">
                 {completedOnes.map((item, index) => (
                   <DashboardListItem
-                    date={item.createdAt}
+                    date={`${moment(item.timing.start).format("YYYY/MM/DD")} - ${moment(item.timing.deadLine).format("YYYY/MM/DD")}`}
                     title={item.title}
                     icon={item.done ? "square-check" : "square"}
                     key={index}
