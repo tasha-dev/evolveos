@@ -80,3 +80,12 @@ export const AddProjectFormSchema = z
       path: ["deadline"],
     },
   );
+
+export const AddNoteFormSchema = z.object({
+  title: z
+    .string({
+      message: "Please fill this input",
+    })
+    .min(2)
+    .max(20),
+});

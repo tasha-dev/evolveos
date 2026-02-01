@@ -1,7 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
 import { ReactNode, RefObject } from "react";
-import { journal, project, task } from "./general";
+import { journal, note, project, task } from "./general";
 
 // Creating and exporting type of props in components
 export interface RootLayoutProps {
@@ -168,4 +168,20 @@ export interface EditProjectProps extends CustomDialogProps {
 
 export interface DeleteProjectDialogProps extends CustomDialogProps {
   id: number;
+}
+
+export interface NoteCardProps {
+  className?: string;
+  data: note;
+}
+
+export interface DeleteNoteDialogProps extends CustomDialogProps {
+  id: number;
+}
+
+export interface EditNoteDialogProps extends CustomDialogProps {
+  data: {
+    id: number;
+    title: string;
+  };
 }

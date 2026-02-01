@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   title: "Projects",
 };
 
-// Creating and exporting Journal page as default
-export default function JournalPage() {
+// Creating and exporting Projects page as default
+export default function ProjectsPage() {
   // Returning JSX
   return (
     <DashboardLayout
