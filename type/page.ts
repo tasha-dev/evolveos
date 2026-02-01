@@ -5,3 +5,9 @@ export interface JournalItemPageProps {
     journalItem: string;
   }>;
 }
+
+export interface ProjectItemPageProps {
+  params: Promise<{
+    projectItem: string;
+  }>;
+}
