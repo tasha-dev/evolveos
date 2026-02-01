@@ -11,3 +11,9 @@ export interface ProjectItemPageProps {
     projectItem: string;
   }>;
 }
+
+export interface NoteItemPageProps {
+  params: Promise<{
+    noteItem: string;
+  }>;
+}
