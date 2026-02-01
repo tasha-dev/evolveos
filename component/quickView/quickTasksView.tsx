@@ -14,6 +14,7 @@ import {
 } from "@/component/ui/card";
 import DashboardListItem from "@/component/dashboard/dashboardListItem";
 import moment from "moment";
+import { dateFormat } from "@/lib/util";
 
 // Creating and exporting QuickTasksView component as default
 export default function QuickTasksView({ className }: QuickTasksViewProps) {
@@ -45,7 +46,7 @@ export default function QuickTasksView({ className }: QuickTasksViewProps) {
                 icon={item.done ? "circle-fill" : "circle"}
                 key={index}
                 title={item.title}
-                date={moment(item.createdAt).format("YYYY/MM/DD")}
+                date={moment(item.createdAt).format(dateFormat)}
               />
             ))}
           </div>

@@ -13,6 +13,8 @@ import {
   CardTitle,
 } from "@/component/ui/card";
 import DashboardListItem from "@/component/dashboard/dashboardListItem";
+import moment from "moment";
+import { dateFormat } from "@/lib/util";
 
 // Creating and exporting QuickNotesView component as default
 export default function QuickNotesView({ className }: QuickNotesViewProps) {
@@ -42,7 +44,7 @@ export default function QuickNotesView({ className }: QuickNotesViewProps) {
               <DashboardListItem
                 key={index}
                 title={item.title}
-                date={item.createdAt}
+                date={moment(item.createdAt).format(dateFormat)}
                 icon={"circle"}
               />
             ))}

@@ -14,6 +14,7 @@ import {
 } from "@/component/ui/card";
 import DashboardListItem from "@/component/dashboard/dashboardListItem";
 import moment from "moment";
+import { dateFormat } from "@/lib/util";
 
 // Creating and exporting QuickJournalView component as default
 export default function QuickJournalView({ className }: QuickJournalViewProps) {
@@ -43,7 +44,7 @@ export default function QuickJournalView({ className }: QuickJournalViewProps) {
               <DashboardListItem
                 key={index}
                 title={item.title}
-                date={moment(item.createdAt).format("YYYY/MM/DD HH:MM")}
+                date={moment(item.createdAt).format(dateFormat)}
                 icon={"circle"}
               />
             ))}

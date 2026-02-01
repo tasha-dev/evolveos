@@ -15,6 +15,7 @@ import useLocalStorageState from "use-local-storage-state";
 import { ProjectsLocalStorageType } from "@/type/localStorage";
 import DashboardListItem from "@/component/dashboard/dashboardListItem";
 import moment from "moment";
+import { dateFormat } from "@/lib/util";
 
 // Creating and exporting ProjectsShowcase component as default
 export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
@@ -52,7 +53,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
               <div className="flex flex-col gap-3">
                 {activeOnes.map((item, index) => (
                   <DashboardListItem
-                    date={`${moment(item.timing.start).format("YYYY/MM/DD")} - ${moment(item.timing.deadLine).format("YYYY/MM/DD")}`}
+                    date={`${moment(item.timing.start).format(dateFormat)} - ${moment(item.timing.deadLine).format(dateFormat)}`}
                     title={item.title}
                     icon={item.done ? "square-check" : "square"}
                     key={index}
@@ -70,7 +71,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
               <div className="flex flex-col gap-3">
                 {projectsCopy.map((item, index) => (
                   <DashboardListItem
-                    date={`${moment(item.timing.start).format("YYYY/MM/DD")} - ${moment(item.timing.deadLine).format("YYYY/MM/DD")}`}
+                    date={`${moment(item.timing.start).format(dateFormat)} - ${moment(item.timing.deadLine).format(dateFormat)}`}
                     title={item.title}
                     icon={item.done ? "square-check" : "square"}
                     key={index}
@@ -88,7 +89,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
               <div className="flex flex-col gap-3">
                 {completedOnes.map((item, index) => (
                   <DashboardListItem
-                    date={`${moment(item.timing.start).format("YYYY/MM/DD")} - ${moment(item.timing.deadLine).format("YYYY/MM/DD")}`}
+                    date={`${moment(item.timing.start).format(dateFormat)} - ${moment(item.timing.deadLine).format(dateFormat)}`}
                     title={item.title}
                     icon={item.done ? "square-check" : "square"}
                     key={index}
