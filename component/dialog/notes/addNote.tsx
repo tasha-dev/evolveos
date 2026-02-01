@@ -62,23 +62,26 @@ export default function AddNote() {
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const prevIndexOfNote = notes.at(-1)?.id;
+    try {
+      const prevIndexOfNote = notes.at(-1)?.id;
 
-    const newNote: note = {
-      content: "Hello world",
-      createdAt: new Date().toISOString(),
-      id: prevIndexOfNote ? prevIndexOfNote + 1 : 1,
-      title: data.title,
-    };
+      const newNote: note = {
+        content: "Hello world",
+        createdAt: new Date().toISOString(),
+        id: prevIndexOfNote ? prevIndexOfNote + 1 : 1,
+        title: data.title,
+      };
 
-    const notesToSet = [...notes, newNote];
+      const notesToSet = [...notes, newNote];
 
-    await sleep(3000);
+      await sleep(3000);
 
-    setNotes(notesToSet);
-    setOpened(false);
-    toast.success("Your note is created and ready to be used.");
-    // toast.error("Something went wrong. Please try again.")
+      setNotes(notesToSet);
+      setOpened(false);
+      toast.success("Your note is created and ready to be used.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   // Returning JSX

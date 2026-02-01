@@ -57,21 +57,24 @@ export default function EditNote({
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const notesToSet = notes.map((item) =>
-      item.id === id
-        ? {
-            ...item,
-            title: data.title,
-          }
-        : item,
-    );
+    try {
+      const notesToSet = notes.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              title: data.title,
+            }
+          : item,
+      );
 
-    await sleep(3000);
+      await sleep(3000);
 
-    setNotes(notesToSet);
-    onOpenChange?.(false);
-    toast.success("Note updated. Your changes are saved.");
-    // toast.error("Couldn’t update note. Please try again.");
+      setNotes(notesToSet);
+      onOpenChange?.(false);
+      toast.success("Note updated. Your changes are saved.");
+    } catch {
+      toast.error("Couldn’t update note. Please try again.");
+    }
   };
 
   // Returning JSX

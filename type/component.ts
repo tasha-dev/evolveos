@@ -1,7 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
 import { ReactNode, RefObject } from "react";
-import { journal, note, project, task } from "./general";
+import { habit, journal, note, project, task } from "./general";
 
 // Creating and exporting type of props in components
 export interface RootLayoutProps {
@@ -184,4 +184,22 @@ export interface EditNoteDialogProps extends CustomDialogProps {
     id: number;
     title: string;
   };
+}
+
+export interface HabitCardProps {
+  className?: string;
+  data: habit;
+}
+
+export interface EditHabitDialogProps extends CustomDialogProps {
+  data: {
+    id: number;
+    title: string;
+    onDaysIndex: 0 | 1 | 2 | 3 | 4 | 5 | 6 | "everyday";
+    onTime: string;
+  };
+}
+
+export interface DeleteHabitDialogProps extends CustomDialogProps {
+  id: number;
 }

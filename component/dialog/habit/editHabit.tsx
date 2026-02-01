@@ -3,7 +3,7 @@
 "use client";
 
 // Importing part
-import { Loader2, Plus } from "lucide-react";
+import { Loader2, Pen } from "lucide-react";
 import { Button } from "@/component/ui/button";
 import {
   Dialog,
@@ -13,14 +13,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/component/ui/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/component/ui/tooltip";
-import { useState } from "react";
 import { AddHabitFormSchema as FormSchema } from "@/lib/formSchema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
@@ -37,10 +30,7 @@ import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
 import useLocalStorageState from "use-local-storage-state";
 import { HabitsLocalStorageType } from "@/type/localStorage";
-import { habit } from "@/type/general";
 import { toast } from "sonner";
-import { Kbd } from "@/component/ui/kbd";
-import useKeyboard from "@/hook/useKeyboard";
 import {
   Select,
   SelectContent,
@@ -48,19 +38,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/component/ui/select";
+import { EditHabitDialogProps } from "@/type/component";
 
-// Creating and exporting AddHabit Dialog as default
-export default function AddHabit() {
+// Creating and exporting EditHabit Dialog as default
+export default function EditHabit({
+  data: { id, onDaysIndex, onTime, title },
+  onOpenChange,
+  open,
+}: EditHabitDialogProps) {
   // Defining hooks
-  const [open, setOpened] = useState<boolean>(false);
   const [habitsLocalStorage, setHabits] =
     useLocalStorageState<HabitsLocalStorageType>("habits");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      onTime,
+      title,
+      onDaysIndex,
+    },
   });
-
-  useKeyboard("a", () => setOpened((prev) => !prev), true, [open, setOpened]);
 
   // Defining variables
   const habits = habitsLocalStorage ? [...habitsLocalStorage] : [];
@@ -70,26 +67,24 @@ export default function AddHabit() {
     data,
   ) => {
     try {
-      const prevIndexOfHabits = habits.at(-1)?.id;
-
-      const newHabit: habit = {
-        on: {
-          days: data.onDaysIndex,
-          time: data.onTime,
-        },
-        doneAt: [],
-        createdAt: new Date().toISOString(),
-        id: prevIndexOfHabits ? prevIndexOfHabits + 1 : 1,
-        title: data.title,
-      };
-
-      const habitsToSet = [...habits, newHabit];
+      const habitsToSet = habits.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              title: data.title,
+              on: {
+                days: data.onDaysIndex,
+                time: data.onTime,
+              },
+            }
+          : item,
+      );
 
       await sleep(3000);
 
       setHabits(habitsToSet);
-      setOpened(false);
-      toast.success("Habit added. Your habit is ready to track.");
+      onOpenChange?.(false);
+      toast.success("Habit updated. Your changes are saved.");
     } catch {
       toast.error("Something went wrong. Please try again.");
     }
@@ -101,33 +96,16 @@ export default function AddHabit() {
       open={open}
       onOpenChange={(open) => {
         if (!form.formState.isSubmitting) {
-          setOpened(open);
+          onOpenChange?.(open);
         }
       }}
     >
-      <DialogTrigger asChild>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant={"nolightblur"}
-              size={"icon-lg"}
-              onClick={() => setOpened(true)}
-            >
-              <Plus />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            Add a new habit
-            <Kbd className="ml-[1ch]">Ctrl + a</Kbd>
-          </TooltipContent>
-        </Tooltip>
-      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add a new habit</DialogTitle>
+          <DialogTitle>Edit habit</DialogTitle>
           <DialogDescription>
-            Habits shape your days — and your days shape your life. Start with
-            one small, repeatable action.
+            Adjust your habit as your life changes. Consistency beats
+            perfection.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -230,9 +208,9 @@ export default function AddHabit() {
                 {form.formState.isSubmitting ? (
                   <Loader2 className="animate-spin" />
                 ) : (
-                  <Plus />
+                  <Pen />
                 )}
-                Add Habit
+                Save changes
               </Button>
             </DialogFooter>
           </form>

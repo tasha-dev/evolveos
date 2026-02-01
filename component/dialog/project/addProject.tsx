@@ -63,28 +63,31 @@ export default function AddProject() {
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const prevIndexOfProject = projects.at(-1)?.id;
+    try {
+      const prevIndexOfProject = projects.at(-1)?.id;
 
-    const newProject: project = {
-      done: false,
-      content: "Hello world",
-      createdAt: new Date().toISOString(),
-      id: prevIndexOfProject ? prevIndexOfProject + 1 : 1,
-      timing: {
-        deadLine: data.deadline,
-        start: data.startDate,
-      },
-      title: data.title,
-    };
+      const newProject: project = {
+        done: false,
+        content: "Hello world",
+        createdAt: new Date().toISOString(),
+        id: prevIndexOfProject ? prevIndexOfProject + 1 : 1,
+        timing: {
+          deadLine: data.deadline,
+          start: data.startDate,
+        },
+        title: data.title,
+      };
 
-    const projectsToSet = [...projects, newProject];
+      const projectsToSet = [...projects, newProject];
 
-    await sleep(3000);
+      await sleep(3000);
 
-    setProjects(projectsToSet);
-    setOpened(false);
-    toast.success("Project created. You’re ready to move forward.");
-    // toast.error("Something went wrong. Please try again.")
+      setProjects(projectsToSet);
+      setOpened(false);
+      toast.success("Project created. You’re ready to move forward.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   // Returning JSX

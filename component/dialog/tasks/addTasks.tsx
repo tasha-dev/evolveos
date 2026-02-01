@@ -62,22 +62,25 @@ export default function AddTasks() {
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const prevIndexOfTasks = tasks.at(-1)?.id;
+    try {
+      const prevIndexOfTasks = tasks.at(-1)?.id;
 
-    const newTask: task = {
-      createdAt: new Date().toISOString(),
-      done: false,
-      id: prevIndexOfTasks ? prevIndexOfTasks + 1 : 1,
-      title: data.title,
-    };
+      const newTask: task = {
+        createdAt: new Date().toISOString(),
+        done: false,
+        id: prevIndexOfTasks ? prevIndexOfTasks + 1 : 1,
+        title: data.title,
+      };
 
-    const tasksToSet = [...tasks, newTask];
-    await sleep(3000);
+      const tasksToSet = [...tasks, newTask];
+      await sleep(3000);
 
-    setTasks(tasksToSet);
-    setOpened(false);
-    toast.success("Your task is added successfully.");
-    // toast.error("Something went wrong. Please try again.")
+      setTasks(tasksToSet);
+      setOpened(false);
+      toast.success("Your task is added successfully.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   // Returning JSX

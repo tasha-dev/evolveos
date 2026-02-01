@@ -63,23 +63,26 @@ export default function AddJournal() {
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const prevIndexOfJournal = journals.at(-1)?.id;
+    try {
+      const prevIndexOfJournal = journals.at(-1)?.id;
 
-    const newJournal: journal = {
-      content: "Hello world",
-      createdAt: new Date().toISOString(),
-      id: prevIndexOfJournal ? prevIndexOfJournal + 1 : 1,
-      title: data.title,
-    };
+      const newJournal: journal = {
+        content: "Hello world",
+        createdAt: new Date().toISOString(),
+        id: prevIndexOfJournal ? prevIndexOfJournal + 1 : 1,
+        title: data.title,
+      };
 
-    const journalsToSet = [...journals, newJournal];
+      const journalsToSet = [...journals, newJournal];
 
-    await sleep(3000);
+      await sleep(3000);
 
-    setJournals(journalsToSet);
-    setOpened(false);
-    toast.success("Your entry was added successfully.");
-    // toast.error("Something went wrong. Please try again.")
+      setJournals(journalsToSet);
+      setOpened(false);
+      toast.success("Your entry was added successfully.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   // Returning JSX

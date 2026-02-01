@@ -58,21 +58,24 @@ export default function EditTask({
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const tasksToSet = tasks.map((item) =>
-      item.id === id
-        ? {
-            ...item,
-            title: data.title,
-          }
-        : item,
-    );
+    try {
+      const tasksToSet = tasks.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              title: data.title,
+            }
+          : item,
+      );
 
-    await sleep(3000);
+      await sleep(3000);
 
-    setTasks(tasksToSet);
-    setOpened(false);
-    toast.success("Your changes are saved.");
-    // toast.error("Something went wrong. Please try again.")
+      setTasks(tasksToSet);
+      setOpened(false);
+      toast.success("Your changes are saved.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   // Returning JSX

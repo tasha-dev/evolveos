@@ -58,21 +58,26 @@ export default function EditJournal({
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const journalsToSet = journals.map((item) =>
-      item.id === id
-        ? {
-            ...item,
-            title: data.title,
-          }
-        : item,
-    );
+    try {
+      const journalsToSet = journals.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              title: data.title,
+            }
+          : item,
+      );
 
-    await sleep(3000);
+      await sleep(3000);
 
-    setJournals(journalsToSet);
-    onOpenChange?.(false);
-    toast.success("Your entry was edited successfully.");
-    // toast.error("There was an error while trying to edit yourentry. Please try again.");
+      setJournals(journalsToSet);
+      onOpenChange?.(false);
+      toast.success("Your entry was edited successfully.");
+    } catch {
+      toast.error(
+        "There was an error while trying to edit yourentry. Please try again.",
+      );
+    }
   };
 
   // Returning JSX

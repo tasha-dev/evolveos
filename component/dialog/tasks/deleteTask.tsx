@@ -35,17 +35,20 @@ export default function DeleteTask({ id }: DeleteTasksDialogProps) {
 
   // Defining submit handler
   const submitHandler = async () => {
-    const journalsToSet = tasks.filter((item) => item.id !== id);
+    try {
+      const journalsToSet = tasks.filter((item) => item.id !== id);
 
-    setLoading(true);
-    await sleep(3000);
+      setLoading(true);
+      await sleep(3000);
 
-    setTasks(journalsToSet);
-    setOpened(false);
-    setLoading(false);
+      setTasks(journalsToSet);
+      setOpened(false);
+      setLoading(false);
 
-    toast.success("The task was removed successfully.");
-    // toast.error("Something went wrong. Please try again.");
+      toast.success("The task was removed successfully.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   // Returning JSX

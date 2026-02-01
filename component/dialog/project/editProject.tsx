@@ -60,25 +60,28 @@ export default function EditProject({
   const submitHandler: SubmitHandler<z.infer<typeof FormSchema>> = async (
     data,
   ) => {
-    const projectsToSet = projects.map((item) =>
-      item.id === id
-        ? {
-            ...item,
-            timing: {
-              deadLine: data.deadline,
-              start: data.startDate,
-            },
-            title: data.title,
-          }
-        : item,
-    );
+    try {
+      const projectsToSet = projects.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              timing: {
+                deadLine: data.deadline,
+                start: data.startDate,
+              },
+              title: data.title,
+            }
+          : item,
+      );
 
-    await sleep(3000);
+      await sleep(3000);
 
-    setProjects(projectsToSet);
-    onOpenChange?.(false);
-    toast.success("Project updated. Your changes are saved.");
-    // toast.error("Something went wrong. Please try again.")
+      setProjects(projectsToSet);
+      onOpenChange?.(false);
+      toast.success("Project updated. Your changes are saved.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   // Returning JSX

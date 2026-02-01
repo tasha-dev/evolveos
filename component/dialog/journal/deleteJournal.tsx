@@ -37,17 +37,20 @@ export default function DeleteJournal({
 
   // Defining submit handler
   const submitHandler = async () => {
-    const journalsToSet = journals.filter((item) => item.id !== data.id);
+    try {
+      const journalsToSet = journals.filter((item) => item.id !== data.id);
 
-    setLoading(true);
-    await sleep(3000);
+      setLoading(true);
+      await sleep(3000);
 
-    setJournals(journalsToSet);
-    onOpenChange?.(false);
-    setLoading(false);
+      setJournals(journalsToSet);
+      onOpenChange?.(false);
+      setLoading(false);
 
-    toast.success("The journal item has been permanently removed.");
-    // toast.error("Could not delete the journal item. Please try again.");
+      toast.success("The journal item has been permanently removed.");
+    } catch {
+      toast.error("Could not delete the journal item. Please try again.");
+    }
   };
 
   // Returning JSX

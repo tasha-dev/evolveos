@@ -37,17 +37,20 @@ export default function DeleteNote({
 
   // Defining submit handler
   const submitHandler = async () => {
-    const notesToSet = notes.filter((item) => item.id !== id);
+    try {
+      const notesToSet = notes.filter((item) => item.id !== id);
 
-    setLoading(true);
-    await sleep(3000);
+      setLoading(true);
+      await sleep(3000);
 
-    setNotes(notesToSet);
-    onOpenChange?.(false);
-    setLoading(false);
+      setNotes(notesToSet);
+      onOpenChange?.(false);
+      setLoading(false);
 
-    toast.success("Note deleted. The note was removed successfully.");
-    // toast.error("Something went wrong. Please try again.");
+      toast.success("Note deleted. The note was removed successfully.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   // Returning JSX

@@ -4,6 +4,7 @@ import DashboardLayout from "@/component/dashboard/dashboardLayout";
 import type { Metadata } from "next";
 import HabitsBannerImage from "@/image/banner/habits.png";
 import AddHabit from "@/component/dialog/habit/addHabit";
+import HabitsContainer from "@/component/container/habitContainer";
 
 // Defining metadata
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export default function JournalPage() {
       bannerTitle="Habits"
       ctaButton={<AddHabit />}
     >
-      HELLO
+      <HabitsContainer />
     </DashboardLayout>
   );
 }

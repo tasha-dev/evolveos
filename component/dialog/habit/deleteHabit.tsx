@@ -16,40 +16,40 @@ import {
 } from "@/component/ui/dialog";
 import { sleep } from "@/lib/util";
 import useLocalStorageState from "use-local-storage-state";
-import { ProjectsLocalStorageType } from "@/type/localStorage";
+import { HabitsLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
-import { DeleteProjectDialogProps } from "@/type/component";
+import { DeleteHabitDialogProps } from "@/type/component";
 import { useState } from "react";
 
-// Creating and exporting DeleteProject Dialog as default
-export default function DeleteProject({
+// Creating and exporting DeleteHabit Dialog as default
+export default function DeleteHabit({
   onOpenChange,
   open,
   id,
-}: DeleteProjectDialogProps) {
+}: DeleteHabitDialogProps) {
   // Defining hooks
   const [loading, setLoading] = useState<boolean>(false);
-  const [projectsLocalStorage, setProjects] =
-    useLocalStorageState<ProjectsLocalStorageType>("projects");
+  const [habitsLocalStorage, setHabits] =
+    useLocalStorageState<HabitsLocalStorageType>("habits");
 
   // Defining variables
-  const projects = projectsLocalStorage ? [...projectsLocalStorage] : [];
+  const habits = habitsLocalStorage ? [...habitsLocalStorage] : [];
 
   // Defining submit handler
   const submitHandler = async () => {
     try {
-      const projectsToSet = projects.filter((item) => item.id !== id);
+      const habitsToSet = habits.filter((item) => item.id !== id);
 
       setLoading(true);
       await sleep(3000);
 
-      setProjects(projectsToSet);
+      setHabits(habitsToSet);
       onOpenChange?.(false);
       setLoading(false);
 
-      toast.success("The project has been permanently removed.");
+      toast.success("Habit deleted.");
     } catch {
-      toast.error("Could not delete the project. Please try again.");
+      toast.error("Couldn’t delete habit. Something went wrong. Try again.");
     }
   };
 
@@ -65,10 +65,10 @@ export default function DeleteProject({
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Delete The Project ?</DialogTitle>
+          <DialogTitle>Delete habit?</DialogTitle>
           <DialogDescription>
-            Are you sure you want to permanently delete this project ? This
-            action cannot be undone.
+            This habit and its tracking history will be removed. This action
+            can’t be undone.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

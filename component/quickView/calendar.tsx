@@ -75,7 +75,7 @@ export default function Calendar({ className }: CalendarProps) {
                 {moment(weekday).format("YYYY MMMM DD")}
               </TooltipContent>
             </Tooltip>
-            <div className="flex flex-col h-[250px] overflow-y-auto overflow-x-hidden">
+            <div className="flex flex-col min-h-[250px]">
               {calenderItems[index].items.map((item, itemIndex) => (
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -108,13 +108,12 @@ export default function Calendar({ className }: CalendarProps) {
                     {`
                         ${item.title}
                         - On ${moment(weekday).weekday(index).format("dddd")}
-                        - ${
-                          item.type === "project-start"
-                            ? "Project Start"
-                            : item.type === "project-deadline"
-                              ? "Project Deadline"
-                              : item.type
-                        }
+                        - ${item.type === "project-start"
+                        ? "Project Start"
+                        : item.type === "project-deadline"
+                          ? "Project Deadline"
+                          : item.type
+                      }
                     `}
                   </TooltipContent>
                 </Tooltip>
