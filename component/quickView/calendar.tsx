@@ -32,14 +32,16 @@ import {
 // Creating ane exporting Calendar component as default
 export default function Calendar({ className }: CalendarProps) {
   // Defining hooks
-  const [habits] = useLocalStorageState<HabitsLocalStorageType>("habits");
-  const [projects] = useLocalStorageState<ProjectsLocalStorageType>("projects");
+  const [habitsLocalStorage] =
+    useLocalStorageState<HabitsLocalStorageType>("habits");
+  const [projectsLocalStorage] =
+    useLocalStorageState<ProjectsLocalStorageType>("projects");
 
   // Defining variables
-  const today = moment().format("YYYY/MM/DD");
+  const habits = habitsLocalStorage ? [...habitsLocalStorage] : [];
+  const projects = projectsLocalStorage ? [...projectsLocalStorage] : [];
   const daysOfWeek = getDaysOfThisWeek();
-  const calenderItems =
-    projects && habits ? getThisWeekItems(projects, habits) : [];
+  const calenderItems = getThisWeekItems(projects, habits) || [];
 
   // Returning JSX
   return (
@@ -56,7 +58,7 @@ export default function Calendar({ className }: CalendarProps) {
             key={index}
             className={cn(
               "not-last-of-type:border-r border-r-current/10",
-              moment(today).get("weekday") === index
+              moment().get("weekday") === index
                 ? "dark:bg-neutral-950 bg-neutral-100"
                 : "bg-card",
             )}
