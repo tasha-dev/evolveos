@@ -53,7 +53,7 @@ export default function AddTasks() {
     resolver: zodResolver(FormSchema),
   });
 
-  useKeyboard("a", () => setOpened((prev) => !prev), true, [open, setOpened]);
+  useKeyboard("a", () => !open && setOpened(true), true, [open, setOpened]);
 
   // Defining variables
   const tasks = tasksLocalStorage ? [...tasksLocalStorage] : [];

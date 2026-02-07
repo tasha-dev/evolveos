@@ -131,9 +131,5 @@
     mark {
       @apply bg-purple-600 text-white;
     }
-
-    img {
-      @apply w-full aspect-video object-cover;
-    }
   }
 }

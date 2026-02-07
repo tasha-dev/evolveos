@@ -14,19 +14,21 @@ export default function useKeyboard(
 ) {
   useEffect(() => {
     function eventHandlerFn(e: KeyboardEvent) {
-      if (ctrl) {
-        if (e.key.toLowerCase() === key.toLowerCase() && e.ctrlKey) {
-          e.preventDefault();
-          handler();
-        }
-      } else {
-        if (e.key.toLowerCase() === key.toLowerCase()) {
-          e.preventDefault();
-          handler();
+      const activeElement = document.activeElement;
+      if (activeElement?.tagName.toLowerCase() === "body") {
+        if (ctrl) {
+          if (e.key.toLowerCase() === key.toLowerCase() && e.ctrlKey) {
+            e.preventDefault();
+            handler();
+          }
+        } else {
+          if (e.key.toLowerCase() === key.toLowerCase()) {
+            e.preventDefault();
+            handler();
+          }
         }
       }
     }
-
     addEventListener("keydown", eventHandlerFn);
 
     // Clean up

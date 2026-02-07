@@ -77,6 +77,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html suppressHydrationWarning lang="en">
       <ThemeProvider>
         <body
+          data-opened-dialog={false}
           className={cn(
             "bg-background text-foreground overflow-y-auto overflow-x-hidden scroll-smooth",
             interFont.className,
