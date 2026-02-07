@@ -27,7 +27,7 @@ export default function ImageFallBack({
       {loading && <Skeleton className={cn("rounded-none", className)} />}
       {error && <div className={cn("bg-destructive", className)} />}
       <Image
-        onLoadingComplete={() => {
+        onLoad={() => {
           setError(false);
           setLoading(false);
         }}

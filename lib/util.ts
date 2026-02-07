@@ -44,17 +44,14 @@ export function getLast30DaysOfHabitScore(
 }
 
 export function getDaysOfThisWeek() {
-  // Defining valriables
   const startOfWeek = moment().startOf("week");
-  let arrayToReturn = [];
+  const arrayToReturn: string[] = [];
 
-  // Using a for loop to get next 7 days of start of week
-  for (let i = 0; i <= 6; i--) {
-    const dayAfterStartOfWeek = startOfWeek.add(i, "day");
-    arrayToReturn.push(dayAfterStartOfWeek.format(dateFormat));
+  for (let i = 0; i <= 6; i++) {
+    const day = startOfWeek.clone().add(i, "day");
+    arrayToReturn.push(day.format(dateFormat));
   }
 
-  // Returning part
   return arrayToReturn;
 }
 

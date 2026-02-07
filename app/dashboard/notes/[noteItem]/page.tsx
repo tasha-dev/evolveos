@@ -78,7 +78,10 @@ export default function NoteItemPage({ params }: NoteItemPageProps) {
       >
         <MarkdownEditor
           defaultValue={findedNote.content}
-          onChange={setEditorContent}
+          onChange={(value) => {
+            setEditorContent(value);
+            console.log(value);
+          }}
         />
       </DashboardLayout>
     );
