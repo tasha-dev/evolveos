@@ -35,8 +35,6 @@ import {
 } from "@/component/ui/form";
 import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { HabitsLocalStorageType } from "@/type/localStorage";
 import { habit } from "@/type/general";
 import { toast } from "sonner";
 import { Kbd } from "@/component/ui/kbd";
@@ -48,13 +46,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/component/ui/select";
+import useDb from "use-db";
+import { HabitsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting AddHabit Dialog as default
 export default function AddHabit() {
   // Defining hooks
   const [open, setOpened] = useState<boolean>(false);
-  const [habitsLocalStorage, setHabits] =
-    useLocalStorageState<HabitsLocalStorageType>("habits");
+  const [habitsLocalStorage, setHabits] = useDb<HabitsIndexedDBType>("habits");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

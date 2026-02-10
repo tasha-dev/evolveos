@@ -4,11 +4,11 @@ import { TaskItemProps } from "@/type/component";
 import { Checkbox } from "@/component/ui/checkbox";
 import moment from "moment";
 import { cn } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { TasksLocalStorageType } from "@/type/localStorage";
 import DeleteTask from "../dialog/tasks/deleteTask";
 import EditTask from "../dialog/tasks/editTask";
 import { useState } from "react";
+import useDb from "use-db";
+import { TasksIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting TaskItem component as default
 export default function TaskItem({
@@ -17,8 +17,7 @@ export default function TaskItem({
 }: TaskItemProps) {
   // Defining hooks
   const [doneState, setDoneState] = useState<boolean>(done);
-  const [tasksLocalStorage, setTasks] =
-    useLocalStorageState<TasksLocalStorageType>("tasks");
+  const [tasksLocalStorage, setTasks] = useDb<TasksIndexedDBType>("tasks");
 
   // Defining variables
   const tasks = tasksLocalStorage ? [...tasksLocalStorage] : [];

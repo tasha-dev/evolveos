@@ -29,10 +29,10 @@ import {
 } from "@/component/ui/form";
 import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { JournalsLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
 import { EditJouranlDialogProps } from "@/type/component";
+import useDb from "use-db";
+import { JournalsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting EditJournal Dialog as default
 export default function EditJournal({
@@ -42,7 +42,7 @@ export default function EditJournal({
 }: EditJouranlDialogProps) {
   // Defining hooks
   const [journalsLocalStorage, setJournals] =
-    useLocalStorageState<JournalsLocalStorageType>("journals");
+    useDb<JournalsIndexedDBType>("journals");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

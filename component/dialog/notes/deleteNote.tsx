@@ -15,11 +15,11 @@ import {
   DialogTitle,
 } from "@/component/ui/dialog";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { NotesLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
 import { DeleteNoteDialogProps } from "@/type/component";
 import { useState } from "react";
+import useDb from "use-db";
+import { NotesIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting DeleteNote Dialog as default
 export default function DeleteNote({
@@ -29,8 +29,7 @@ export default function DeleteNote({
 }: DeleteNoteDialogProps) {
   // Defining hooks
   const [loading, setLoading] = useState<boolean>(false);
-  const [notesLocalStorage, setNotes] =
-    useLocalStorageState<NotesLocalStorageType>("notes");
+  const [notesLocalStorage, setNotes] = useDb<NotesIndexedDBType>("notes");
 
   // Defining variables
   const notes = notesLocalStorage ? [...notesLocalStorage] : [];

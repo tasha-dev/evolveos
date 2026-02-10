@@ -12,11 +12,6 @@ import {
 } from "@/component/ui/card";
 import { CalendarProps } from "@/type/component";
 import moment from "moment";
-import useLocalStorageState from "use-local-storage-state";
-import {
-  HabitsLocalStorageType,
-  ProjectsLocalStorageType,
-} from "@/type/localStorage";
 import {
   Brain,
   CalendarArrowDown,
@@ -28,14 +23,14 @@ import {
   TooltipTrigger,
   Tooltip,
 } from "@/component/ui/tooltip";
+import useDb from "use-db";
+import { HabitsIndexedDBType, ProjectsIndexedDBType } from "@/type/indexedDb";
 
 // Creating ane exporting Calendar component as default
 export default function Calendar({ className }: CalendarProps) {
   // Defining hooks
-  const [habitsLocalStorage] =
-    useLocalStorageState<HabitsLocalStorageType>("habits");
-  const [projectsLocalStorage] =
-    useLocalStorageState<ProjectsLocalStorageType>("projects");
+  const [habitsLocalStorage] = useDb<HabitsIndexedDBType>("habits");
+  const [projectsLocalStorage] = useDb<ProjectsIndexedDBType>("projects");
 
   // Defining variables
   const habits = habitsLocalStorage ? [...habitsLocalStorage] : [];

@@ -4,15 +4,14 @@
 
 // Importing part
 import { ContainerProps } from "@/type/component";
-import { TasksLocalStorageType } from "@/type/localStorage";
-import useLocalStorageState from "use-local-storage-state";
 import TaskItem from "../containerItem/taskItem";
+import useDb from "use-db";
+import { TasksIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting TasksContainer component as default
 export default function TasksContainer({ className }: ContainerProps) {
   // Defining hooks
-  const [tasksLocalStorage] =
-    useLocalStorageState<TasksLocalStorageType>("tasks");
+  const [tasksLocalStorage] = useDb<TasksIndexedDBType>("tasks");
 
   // Defining variables
   const tasks = tasksLocalStorage ? [...tasksLocalStorage] : [];

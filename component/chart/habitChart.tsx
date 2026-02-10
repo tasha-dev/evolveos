@@ -3,7 +3,6 @@
 "use client";
 
 // Importing part
-import useLocalStorageState from "use-local-storage-state";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { HabitChartProps } from "@/type/component";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
@@ -13,8 +12,9 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/component/ui/chart";
-import { HabitsLocalStorageType } from "@/type/localStorage";
 import { getLast30DaysOfHabitScore } from "@/lib/util";
+import useDb from "use-db";
+import { HabitsIndexedDBType } from "@/type/indexedDb";
 
 // Defining chart config
 const chartConfig = {
@@ -27,7 +27,7 @@ const chartConfig = {
 // Creating and exporting HabitChart component as default
 export default function HabitChart({ className }: HabitChartProps) {
   // Defining hooks
-  const [habits] = useLocalStorageState<HabitsLocalStorageType>("habits");
+  const [habits] = useDb<HabitsIndexedDBType>("habits");
   const chartData = habits ? getLast30DaysOfHabitScore(habits) : [];
 
   // Returning JSX

@@ -15,11 +15,11 @@ import {
   DialogTitle,
 } from "@/component/ui/dialog";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { JournalsLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
 import { DeleteJournalDialogProps } from "@/type/component";
 import { useState } from "react";
+import useDb from "use-db";
+import { JournalsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting DeleteJournal Dialog as default
 export default function DeleteJournal({
@@ -30,7 +30,7 @@ export default function DeleteJournal({
   // Defining hooks
   const [loading, setLoading] = useState<boolean>(false);
   const [journalsLocalStorage, setJournals] =
-    useLocalStorageState<JournalsLocalStorageType>("journals");
+    useDb<JournalsIndexedDBType>("journals");
 
   // Defining variables
   const journals = journalsLocalStorage ? [...journalsLocalStorage] : [];

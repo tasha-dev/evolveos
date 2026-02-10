@@ -5,15 +5,14 @@
 // Importing part
 import { ContainerProps } from "@/type/component";
 import { journal } from "@/type/general";
-import { NotesLocalStorageType } from "@/type/localStorage";
-import useLocalStorageState from "use-local-storage-state";
 import NoteCard from "../containerItem/noteCard";
+import useDb from "use-db";
+import { NotesIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting NoteContainer component as default
 export default function NoteContainer({ className }: ContainerProps) {
   // Defining hooks
-  const [noteLocalStorage] =
-    useLocalStorageState<NotesLocalStorageType>("notes");
+  const [noteLocalStorage] = useDb<NotesIndexedDBType>("notes");
 
   // Defining variables
   const journals: journal[] = noteLocalStorage ? [...noteLocalStorage] : [];

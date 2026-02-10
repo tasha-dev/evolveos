@@ -35,20 +35,20 @@ import {
 } from "@/component/ui/form";
 import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { ProjectsLocalStorageType } from "@/type/localStorage";
 import { project } from "@/type/general";
 import { toast } from "sonner";
 import { Kbd } from "@/component/ui/kbd";
 import useKeyboard from "@/hook/useKeyboard";
 import DatePicker from "@/component/ui/datePicker";
+import useDb from "use-db";
+import { ProjectsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting AddProject Dialog as default
 export default function AddProject() {
   // Defining hooks
   const [open, setOpened] = useState<boolean>(false);
   const [projectsLocalStorage, setProjects] =
-    useLocalStorageState<ProjectsLocalStorageType>("projects");
+    useDb<ProjectsIndexedDBType>("projects");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

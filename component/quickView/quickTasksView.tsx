@@ -4,8 +4,6 @@
 
 // Importing part
 import { QuickTasksViewProps } from "@/type/component";
-import { task } from "@/type/general";
-import useLocalStorageState from "use-local-storage-state";
 import {
   Card,
   CardDescription,
@@ -14,21 +12,23 @@ import {
 } from "@/component/ui/card";
 import DashboardListItem from "@/component/dashboard/dashboardListItem";
 import moment from "moment";
-import { dateFormat } from "@/lib/util";
+import { dateFormat, sortLast10Items } from "@/lib/util";
+import useDb from "use-db";
+import { TasksIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting QuickTasksView component as default
 export default function QuickTasksView({ className }: QuickTasksViewProps) {
   // Defining hooks
-  const [tasks] = useLocalStorageState<task[]>("tasks");
+  const [tasks] = useDb<TasksIndexedDBType>("tasks");
 
   // Defining variables
-  const tasksToRender = tasks ? tasks.slice(0, 10) : [];
+  const tasksToRender = tasks ? sortLast10Items([...tasks]) : [];
 
   // Returning JSX
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Tasks</CardTitle>
+        <CardTitle>Tasks (Latest)</CardTitle>
         <CardDescription className="line-clamp-2">
           An overview of your latest Tasks, Today's hard work, is Tommorow's
           improvement.

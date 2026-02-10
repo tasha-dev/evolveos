@@ -28,11 +28,11 @@ import {
 } from "@/component/ui/form";
 import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { ProjectsLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
 import DatePicker from "@/component/ui/datePicker";
 import { EditProjectProps } from "@/type/component";
+import useDb from "use-db";
+import { ProjectsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting EditProject Dialog as default
 export default function EditProject({
@@ -42,7 +42,7 @@ export default function EditProject({
 }: EditProjectProps) {
   // Defining hooks
   const [projectsLocalStorage, setProjects] =
-    useLocalStorageState<ProjectsLocalStorageType>("projects");
+    useDb<ProjectsIndexedDBType>("projects");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

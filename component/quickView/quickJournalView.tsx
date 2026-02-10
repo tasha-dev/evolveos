@@ -4,8 +4,6 @@
 
 // Importing part
 import { QuickJournalViewProps } from "@/type/component";
-import { journal } from "@/type/general";
-import useLocalStorageState from "use-local-storage-state";
 import {
   Card,
   CardDescription,
@@ -14,21 +12,23 @@ import {
 } from "@/component/ui/card";
 import DashboardListItem from "@/component/dashboard/dashboardListItem";
 import moment from "moment";
-import { dateFormat } from "@/lib/util";
+import { dateFormat, sortLast10Items } from "@/lib/util";
+import useDb from "use-db";
+import { JournalsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting QuickJournalView component as default
 export default function QuickJournalView({ className }: QuickJournalViewProps) {
   // Defining hooks
-  const [journals] = useLocalStorageState<journal[]>("journals");
+  const [journals] = useDb<JournalsIndexedDBType>("journals");
 
   // Defining variables
-  const journalsToRender = journals ? journals.slice(0, 10) : [];
+  const journalsToRender = journals ? sortLast10Items([...journals]) : [];
 
   // Returning JSX
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Journals</CardTitle>
+        <CardTitle>Journals (Latest)</CardTitle>
         <CardDescription className="line-clamp-2">
           Your glouries story of success, day by day.
         </CardDescription>

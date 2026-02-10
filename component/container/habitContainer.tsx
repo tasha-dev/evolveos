@@ -5,15 +5,14 @@
 // Importing part
 import { ContainerProps } from "@/type/component";
 import { habit } from "@/type/general";
-import { HabitsLocalStorageType } from "@/type/localStorage";
-import useLocalStorageState from "use-local-storage-state";
 import HabitCard from "../containerItem/habitCard";
+import useDb from "use-db";
+import { HabitsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting HabitsContainer component as default
 export default function HabitsContainer({ className }: ContainerProps) {
   // Defining hooks
-  const [habitsLocalStorage] =
-    useLocalStorageState<HabitsLocalStorageType>("habits");
+  const [habitsLocalStorage] = useDb<HabitsIndexedDBType>("habits");
 
   // Defining variables
   const habits: habit[] = habitsLocalStorage ? [...habitsLocalStorage] : [];

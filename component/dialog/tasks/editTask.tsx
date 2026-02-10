@@ -30,10 +30,10 @@ import {
 } from "@/component/ui/form";
 import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { TasksLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
 import { EditTasksDialogProps } from "@/type/component";
+import useDb from "use-db";
+import { TasksIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting EditTasks Dialog as default
 export default function EditTask({
@@ -41,8 +41,7 @@ export default function EditTask({
 }: EditTasksDialogProps) {
   // Defining hooks
   const [open, setOpened] = useState<boolean>(false);
-  const [tasksLocalStorage, setTasks] =
-    useLocalStorageState<TasksLocalStorageType>("tasks");
+  const [tasksLocalStorage, setTasks] = useDb<TasksIndexedDBType>("tasks");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

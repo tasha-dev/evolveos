@@ -9,8 +9,6 @@ import { NoteItemPageProps } from "@/type/page";
 import { use, useState } from "react";
 import useTitle from "@/hook/useTitle";
 import MarkdownEditor from "@/component/markdownEditor";
-import useLocalStorageState from "use-local-storage-state";
-import { NotesLocalStorageType } from "@/type/localStorage";
 import { notFound } from "next/navigation";
 import useKeyboard from "@/hook/useKeyboard";
 import { toast } from "sonner";
@@ -22,6 +20,8 @@ import {
   TooltipTrigger,
 } from "@/component/ui/tooltip";
 import { Kbd } from "@/component/ui/kbd";
+import useDb from "use-db";
+import { NotesIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting NoteItem page as default
 export default function NoteItemPage({ params }: NoteItemPageProps) {
@@ -30,8 +30,7 @@ export default function NoteItemPage({ params }: NoteItemPageProps) {
   const [id, titleURL] = noteItem.split("-");
   const title = decodeURIComponent(titleURL);
   const [editorContent, setEditorContent] = useState<string>("");
-  const [notesLocalStorage, setNotes] =
-    useLocalStorageState<NotesLocalStorageType>("notes");
+  const [notesLocalStorage, setNotes] = useDb<NotesIndexedDBType>("notes");
 
   useTitle(`${title} Note`, [title, noteItem]);
   useKeyboard("s", saveNote, true);

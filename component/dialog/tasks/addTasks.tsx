@@ -35,19 +35,18 @@ import {
 } from "@/component/ui/form";
 import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { TasksLocalStorageType } from "@/type/localStorage";
 import { task } from "@/type/general";
 import { toast } from "sonner";
 import { Kbd } from "@/component/ui/kbd";
 import useKeyboard from "@/hook/useKeyboard";
+import useDb from "use-db";
+import { TasksIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting AddTasks Dialog as default
 export default function AddTasks() {
   // Defining hooks
   const [open, setOpened] = useState<boolean>(false);
-  const [tasksLocalStorage, setTasks] =
-    useLocalStorageState<TasksLocalStorageType>("tasks");
+  const [tasksLocalStorage, setTasks] = useDb<TasksIndexedDBType>("tasks");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

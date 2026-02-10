@@ -36,19 +36,19 @@ import {
 } from "@/component/ui/form";
 import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { JournalsLocalStorageType } from "@/type/localStorage";
 import { journal } from "@/type/general";
 import { toast } from "sonner";
 import { Kbd } from "@/component/ui/kbd";
 import useKeyboard from "@/hook/useKeyboard";
+import useDb from "use-db";
+import { JournalsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting AddJournal Dialog as default
 export default function AddJournal() {
   // Defining hooks
   const [open, setOpened] = useState<boolean>(false);
   const [journalsLocalStorage, setJournals] =
-    useLocalStorageState<JournalsLocalStorageType>("journals");
+    useDb<JournalsIndexedDBType>("journals");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

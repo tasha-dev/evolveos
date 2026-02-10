@@ -5,15 +5,14 @@
 // Importing part
 import { ContainerProps } from "@/type/component";
 import { journal } from "@/type/general";
-import { JournalsLocalStorageType } from "@/type/localStorage";
-import useLocalStorageState from "use-local-storage-state";
 import JournalCard from "../containerItem/journalCard";
+import useDb from "use-db";
+import { JournalsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting JournalsContainer component as default
 export default function JournalsContainer({ className }: ContainerProps) {
   // Defining hooks
-  const [journalsLocalStorage] =
-    useLocalStorageState<JournalsLocalStorageType>("journals");
+  const [journalsLocalStorage] = useDb<JournalsIndexedDBType>("journals");
 
   // Defining variables
   const journals: journal[] = journalsLocalStorage

@@ -15,11 +15,11 @@ import {
   DialogTitle,
 } from "@/component/ui/dialog";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { ProjectsLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
 import { DeleteProjectDialogProps } from "@/type/component";
 import { useState } from "react";
+import useDb from "use-db";
+import { ProjectsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting DeleteProject Dialog as default
 export default function DeleteProject({
@@ -30,7 +30,7 @@ export default function DeleteProject({
   // Defining hooks
   const [loading, setLoading] = useState<boolean>(false);
   const [projectsLocalStorage, setProjects] =
-    useLocalStorageState<ProjectsLocalStorageType>("projects");
+    useDb<ProjectsIndexedDBType>("projects");
 
   // Defining variables
   const projects = projectsLocalStorage ? [...projectsLocalStorage] : [];
