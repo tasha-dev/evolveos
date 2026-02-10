@@ -20,7 +20,8 @@ import { useState } from "react";
 import EditHabit from "../dialog/habit/editHabit";
 import DeleteHabit from "../dialog/habit/deleteHabit";
 import useLocalStorageState from "use-local-storage-state";
-import { HabitsLocalStorageType } from "@/type/localStorage";
+import useDb from "use-db";
+import { HabitsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting HabitCard component as default
 export default function HabitCard({
@@ -30,8 +31,7 @@ export default function HabitCard({
   // Defining hooks
   const [editOpened, setEditOpened] = useState<boolean>(false);
   const [deleteOpened, setDeleteOpened] = useState<boolean>(false);
-  const [habitsLocalStorage, setHabits] =
-    useLocalStorageState<HabitsLocalStorageType>("habits");
+  const [habitsLocalStorage, setHabits] = useDb<HabitsIndexedDBType>("habits");
 
   // Defining variables
   const habits = habitsLocalStorage ? [...habitsLocalStorage] : [];

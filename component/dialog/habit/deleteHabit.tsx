@@ -15,11 +15,11 @@ import {
   DialogTitle,
 } from "@/component/ui/dialog";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { HabitsLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
 import { DeleteHabitDialogProps } from "@/type/component";
 import { useState } from "react";
+import useDb from "use-db";
+import { HabitsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting DeleteHabit Dialog as default
 export default function DeleteHabit({
@@ -29,8 +29,7 @@ export default function DeleteHabit({
 }: DeleteHabitDialogProps) {
   // Defining hooks
   const [loading, setLoading] = useState<boolean>(false);
-  const [habitsLocalStorage, setHabits] =
-    useLocalStorageState<HabitsLocalStorageType>("habits");
+  const [habitsLocalStorage, setHabits] = useDb<HabitsIndexedDBType>("habits");
 
   // Defining variables
   const habits = habitsLocalStorage ? [...habitsLocalStorage] : [];
