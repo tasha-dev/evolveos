@@ -4,15 +4,14 @@
 
 // Importing part
 import { ContainerProps } from "@/type/component";
-import { ProjectsLocalStorageType } from "@/type/localStorage";
-import useLocalStorageState from "use-local-storage-state";
 import ProjectCard from "../containerItem/projectCard";
+import useDb from "use-db";
+import { ProjectsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting ProjectsContainer component as default
 export default function ProjectsContainer({ className }: ContainerProps) {
   // Defining hooks
-  const [projectsLocalStorage] =
-    useLocalStorageState<ProjectsLocalStorageType>("projects");
+  const [projectsLocalStorage] = useDb<ProjectsIndexedDBType>("projects");
 
   // Defining variables
   const projects = projectsLocalStorage ? [...projectsLocalStorage] : [];
