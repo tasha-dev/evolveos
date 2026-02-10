@@ -16,19 +16,18 @@ import {
   DialogTrigger,
 } from "@/component/ui/dialog";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { TasksLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
 import { DeleteTasksDialogProps } from "@/type/component";
 import { useState } from "react";
+import useDb from "use-db";
+import { TasksIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting DeleteTask Dialog as default
 export default function DeleteTask({ id }: DeleteTasksDialogProps) {
   // Defining hooks
   const [open, setOpened] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [tasksLocalStorage, setTasks] =
-    useLocalStorageState<TasksLocalStorageType>("tasks");
+  const [tasksLocalStorage, setTasks] = useDb<TasksIndexedDBType>("tasks");
 
   // Defining variables
   const tasks = tasksLocalStorage ? [...tasksLocalStorage] : [];
