@@ -28,10 +28,10 @@ import {
 } from "@/component/ui/form";
 import { Input } from "@/component/ui/input";
 import { sleep } from "@/lib/util";
-import useLocalStorageState from "use-local-storage-state";
-import { NotesLocalStorageType } from "@/type/localStorage";
 import { toast } from "sonner";
 import { EditNoteDialogProps } from "@/type/component";
+import useDb from "use-db";
+import { NotesIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting EditNote Dialog as default
 export default function EditNote({
@@ -40,8 +40,7 @@ export default function EditNote({
   open,
 }: EditNoteDialogProps) {
   // Defining hooks
-  const [notesLocalStorage, setNotes] =
-    useLocalStorageState<NotesLocalStorageType>("notes");
+  const [notesLocalStorage, setNotes] = useDb<NotesIndexedDBType>("notes");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
