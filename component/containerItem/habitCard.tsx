@@ -19,7 +19,6 @@ import { Checkbox } from "../ui/checkbox";
 import { useState } from "react";
 import EditHabit from "../dialog/habit/editHabit";
 import DeleteHabit from "../dialog/habit/deleteHabit";
-import useLocalStorageState from "use-local-storage-state";
 import useDb from "use-db";
 import { HabitsIndexedDBType } from "@/type/indexedDb";
 

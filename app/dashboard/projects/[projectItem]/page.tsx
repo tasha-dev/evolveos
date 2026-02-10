@@ -9,8 +9,6 @@ import { ProjectItemPageProps } from "@/type/page";
 import { use, useState } from "react";
 import useTitle from "@/hook/useTitle";
 import MarkdownEditor from "@/component/markdownEditor";
-import useLocalStorageState from "use-local-storage-state";
-import { ProjectsLocalStorageType } from "@/type/localStorage";
 import { notFound } from "next/navigation";
 import useKeyboard from "@/hook/useKeyboard";
 import { toast } from "sonner";
@@ -22,6 +20,8 @@ import {
   TooltipTrigger,
 } from "@/component/ui/tooltip";
 import { Kbd } from "@/component/ui/kbd";
+import useDb from "use-db";
+import { ProjectsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting ProjectItem page as default
 export default function ProjectItemPage({ params }: ProjectItemPageProps) {
@@ -31,7 +31,7 @@ export default function ProjectItemPage({ params }: ProjectItemPageProps) {
   const title = decodeURIComponent(titleURL);
   const [editorContent, setEditorContent] = useState<string>("");
   const [projectsLocalStorage, setProjects] =
-    useLocalStorageState<ProjectsLocalStorageType>("projects");
+    useDb<ProjectsIndexedDBType>("projects");
 
   useTitle(`${title} Project`, [title, projectItem]);
   useKeyboard("s", saveProject, true);

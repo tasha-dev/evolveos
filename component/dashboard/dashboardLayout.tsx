@@ -34,23 +34,23 @@ export default function DashboardLayout({
   });
 
   // Defining local storage states
-  const notes = useDb<NotesIndexedDBType>("notes", {
+  useDb<NotesIndexedDBType>("notes", {
     defaultValue: [],
   });
 
-  const journals = useLocalStorageState<JournalsIndexedDBType>("journals", {
+  useDb<JournalsIndexedDBType>("journals", {
     defaultValue: [],
   });
 
-  const tasks = useLocalStorageState<TasksIndexedDBType>("tasks", {
+  useDb<TasksIndexedDBType>("tasks", {
     defaultValue: [],
   });
 
-  const projects = useLocalStorageState<ProjectsIndexedDBType>("projects", {
+  useDb<ProjectsIndexedDBType>("projects", {
     defaultValue: [],
   });
 
-  const habits = useLocalStorageState<HabitsIndexedDBType>("habits", {
+  useDb<HabitsIndexedDBType>("habits", {
     defaultValue: [],
   });
 
