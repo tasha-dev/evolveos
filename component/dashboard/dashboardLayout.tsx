@@ -7,16 +7,17 @@ import Banner from "@/component/banner";
 import { cn } from "@/lib/util";
 import { DashboardLayoutProps } from "@/type/component";
 import { useRef, useState } from "react";
+import useDb from "use-db";
 import NavBar from "@/component/navBar";
 import useLocalStorageState from "use-local-storage-state";
 import Greeting from "@/component/dialog/greeting";
 import {
-  HabitsLocalStorageType,
-  JournalsLocalStorageType,
-  NotesLocalStorageType,
-  ProjectsLocalStorageType,
-  TasksLocalStorageType,
-} from "@/type/localStorage";
+  HabitsIndexedDBType,
+  JournalsIndexedDBType,
+  NotesIndexedDBType,
+  ProjectsIndexedDBType,
+  TasksIndexedDBType,
+} from "@/type/indexedDb";
 
 // Creating and exporting DashboardLayout component as default
 export default function DashboardLayout({
@@ -28,29 +29,28 @@ export default function DashboardLayout({
 }: DashboardLayoutProps) {
   // Defining hooks
   const [navbarOpen, setNavBarOpen] = useState<boolean>(false);
-
-  // Defining local storage states
-  const notes = useLocalStorageState<NotesLocalStorageType>("notes", {
-    defaultValue: [],
-  });
-
   const [greeting, setGreeting] = useLocalStorageState<boolean>("greeting", {
     defaultValue: false,
   });
 
-  const journals = useLocalStorageState<JournalsLocalStorageType>("journals", {
+  // Defining local storage states
+  const notes = useDb<NotesIndexedDBType>("notes", {
     defaultValue: [],
   });
 
-  const tasks = useLocalStorageState<TasksLocalStorageType>("tasks", {
+  const journals = useLocalStorageState<JournalsIndexedDBType>("journals", {
     defaultValue: [],
   });
 
-  const projects = useLocalStorageState<ProjectsLocalStorageType>("projects", {
+  const tasks = useLocalStorageState<TasksIndexedDBType>("tasks", {
     defaultValue: [],
   });
 
-  const habits = useLocalStorageState<HabitsLocalStorageType>("habits", {
+  const projects = useLocalStorageState<ProjectsIndexedDBType>("projects", {
+    defaultValue: [],
+  });
+
+  const habits = useLocalStorageState<HabitsIndexedDBType>("habits", {
     defaultValue: [],
   });
 

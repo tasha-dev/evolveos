@@ -1,10 +1,6 @@
 // Codes by mahdi tasha
 // Importing part
-import {
-  HabitsLocalStorageType,
-  ProjectsLocalStorageType,
-  TasksLocalStorageType,
-} from "@/type/localStorage";
+import { HabitsIndexedDBType, ProjectsIndexedDBType } from "@/type/indexedDb";
 import {
   CalendarItemType,
   CalenderItemWeekDayIndex,
@@ -23,7 +19,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getLast30DaysOfHabitScore(
-  habitsLocalStorage: HabitsLocalStorageType,
+  habitsLocalStorage: HabitsIndexedDBType,
 ) {
   const arrayToReturn = [];
 
@@ -91,8 +87,8 @@ export function groupByWeekDay(
 }
 
 export function getThisWeekItems(
-  projects: ProjectsLocalStorageType,
-  habits: HabitsLocalStorageType,
+  projects: ProjectsIndexedDBType,
+  habits: HabitsIndexedDBType,
 ): GroupedCalendarItems[] {
   // Defining variables
   const today = moment().format(dateFormat);
@@ -144,4 +140,19 @@ export function getThisWeekItems(
 
 export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export function sortLast10Items<T>(
+  data: Array<
+    T & {
+      createdAt: string;
+    }
+  >,
+) {
+  const sortedData = data.sort(
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+  );
+
+  const slicedData = sortedData.slice(0, 10);
+  return slicedData;
 }

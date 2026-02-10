@@ -4,8 +4,6 @@
 
 // Importing part
 import { QuickNotesViewProps } from "@/type/component";
-import { note } from "@/type/general";
-import useLocalStorageState from "use-local-storage-state";
 import {
   Card,
   CardDescription,
@@ -14,21 +12,23 @@ import {
 } from "@/component/ui/card";
 import DashboardListItem from "@/component/dashboard/dashboardListItem";
 import moment from "moment";
-import { dateFormat } from "@/lib/util";
+import { dateFormat, sortLast10Items } from "@/lib/util";
+import useDb from "use-db";
+import { NotesIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting QuickNotesView component as default
 export default function QuickNotesView({ className }: QuickNotesViewProps) {
   // Defining hooks
-  const [notes] = useLocalStorageState<note[]>("notes");
+  const [notes] = useDb<NotesIndexedDBType>("notes");
 
   // Defining variables
-  const notesToRender = notes ? notes.slice(0, 10) : [];
+  const notesToRender = notes ? sortLast10Items([...notes]) : [];
 
   // Returning JSX
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Notes</CardTitle>
+        <CardTitle>Notes (Latest)</CardTitle>
         <CardDescription className="line-clamp-2">
           An overview of your latest notes, Making sure to not forget them.
         </CardDescription>

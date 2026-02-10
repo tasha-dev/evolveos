@@ -11,19 +11,19 @@ import {
   CardTitle,
 } from "@/component/ui/card";
 import { TabsContent, Tabs, TabsList, TabsTrigger } from "@/component/ui/tabs";
-import useLocalStorageState from "use-local-storage-state";
-import { ProjectsLocalStorageType } from "@/type/localStorage";
 import DashboardListItem from "@/component/dashboard/dashboardListItem";
 import moment from "moment";
-import { dateFormat } from "@/lib/util";
+import { dateFormat, sortLast10Items } from "@/lib/util";
+import useDb from "use-db";
+import { ProjectsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting ProjectsShowcase component as default
 export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
   // Defining hooks
-  const [projects] = useLocalStorageState<ProjectsLocalStorageType>("projects");
+  const [projects] = useDb<ProjectsIndexedDBType>("projects");
 
   // Defining variables
-  const projectsCopy = projects ? [...projects] : [];
+  const projectsCopy = projects ? sortLast10Items([...projects]) : [];
   const activeOnes = projectsCopy.filter((item) => !item.done);
   const completedOnes = projectsCopy.filter((item) => item.done);
 
@@ -31,7 +31,7 @@ export default function ProjectsShowcase({ className }: ProjectsShowcaseProps) {
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Projects</CardTitle>
+        <CardTitle>Projects (Latest)</CardTitle>
         <CardDescription>
           An overview of everything you’re building, tracking progress and
           current status.
