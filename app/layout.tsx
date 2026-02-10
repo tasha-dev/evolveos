@@ -59,7 +59,6 @@ export const metadata: Metadata = {
       "Markdown-first, offline-friendly dashboard for journaling, habits, tasks, and personal growth.",
     images: ["/og-image.png"],
   },
-  manifest: "/manifest.json",
 };
 
 // Defining fonts
