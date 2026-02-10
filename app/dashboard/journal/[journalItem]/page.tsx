@@ -9,8 +9,6 @@ import { JournalItemPageProps } from "@/type/page";
 import { use, useState } from "react";
 import useTitle from "@/hook/useTitle";
 import MarkdownEditor from "@/component/markdownEditor";
-import useLocalStorageState from "use-local-storage-state";
-import { JournalsLocalStorageType } from "@/type/localStorage";
 import { notFound } from "next/navigation";
 import useKeyboard from "@/hook/useKeyboard";
 import { toast } from "sonner";
@@ -22,6 +20,8 @@ import {
   TooltipTrigger,
 } from "@/component/ui/tooltip";
 import { Kbd } from "@/component/ui/kbd";
+import useDb from "use-db";
+import { JournalsIndexedDBType } from "@/type/indexedDb";
 
 // Creating and exporting JournalItem page as default
 export default function JournalItemPage({ params }: JournalItemPageProps) {
@@ -31,7 +31,7 @@ export default function JournalItemPage({ params }: JournalItemPageProps) {
   const title = decodeURIComponent(titleURL);
   const [editorContent, setEditorContent] = useState<string>("");
   const [journalsLocalStorage, setJournals] =
-    useLocalStorageState<JournalsLocalStorageType>("journals");
+    useDb<JournalsIndexedDBType>("journals");
 
   useTitle(`${title} Journal`, [title, journalItem]);
   useKeyboard("s", saveJournal, true);
