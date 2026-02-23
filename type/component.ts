@@ -209,3 +209,9 @@ export interface EmptyContainerProps {
   createKey?: string;
   icon: ReactNode;
 }
+
+export interface ImageMagnifiereProps {
+  className?: string;
+  src: string;
+  alt?: string;
+}

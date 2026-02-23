@@ -22,6 +22,8 @@ const buttonVariants = cva(
         blur: "border border-foreground/10 bg-foreground/20 backdrop-blur-2xl ring-2 ring-transparent focus-visible:ring-foreground/50 text-foreground",
         nolightblur:
           "border border-white/10 bg-white/20 backdrop-blur-2xl ring-2 ring-transparent focus-visible:ring-white/50 text-white",
+        darkblur:
+          "border border-neutral-900/10 bg-neutral-900/20 backdrop-blur-2xl ring-2 ring-transparent focus-visible:ring-neutral-900/50 text-neutral-900",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
