@@ -8,6 +8,8 @@ import { journal } from "@/type/general";
 import JournalCard from "../containerItem/journalCard";
 import useDb from "use-db";
 import { JournalsIndexedDBType } from "@/type/indexedDb";
+import EmptyContainer from "../emptyContainer";
+import { Book } from "lucide-react";
 
 // Creating and exporting JournalsContainer component as default
 export default function JournalsContainer({ className }: ContainerProps) {
@@ -23,9 +25,7 @@ export default function JournalsContainer({ className }: ContainerProps) {
   return (
     <div className={className}>
       {journals.length === 0 ? (
-        <h3 className="font-semibold text-center truncate block text-lg">
-          There is nothing to show
-        </h3>
+        <EmptyContainer icon={<Book />} />
       ) : (
         <div className="grid lg:grid-cols-2 gap-4">
           {journals.map((item, index) => (

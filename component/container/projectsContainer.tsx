@@ -7,6 +7,8 @@ import { ContainerProps } from "@/type/component";
 import ProjectCard from "../containerItem/projectCard";
 import useDb from "use-db";
 import { ProjectsIndexedDBType } from "@/type/indexedDb";
+import EmptyContainer from "../emptyContainer";
+import { Layers } from "lucide-react";
 
 // Creating and exporting ProjectsContainer component as default
 export default function ProjectsContainer({ className }: ContainerProps) {
@@ -20,9 +22,7 @@ export default function ProjectsContainer({ className }: ContainerProps) {
   return (
     <div className={className}>
       {projects.length === 0 ? (
-        <h3 className="font-semibold text-center truncate block text-lg">
-          There is nothing to show
-        </h3>
+        <EmptyContainer icon={<Layers />} />
       ) : (
         <div className="grid lg:grid-cols-2 gap-4">
           {projects.map((item, index) => (

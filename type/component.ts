@@ -203,3 +203,9 @@ export interface EditHabitDialogProps extends CustomDialogProps {
 export interface DeleteHabitDialogProps extends CustomDialogProps {
   id: number;
 }
+
+export interface EmptyContainerProps {
+  className?: string;
+  createKey?: string;
+  icon: ReactNode;
+}

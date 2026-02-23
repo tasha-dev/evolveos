@@ -8,6 +8,8 @@ import { journal } from "@/type/general";
 import NoteCard from "../containerItem/noteCard";
 import useDb from "use-db";
 import { NotesIndexedDBType } from "@/type/indexedDb";
+import EmptyContainer from "../emptyContainer";
+import { FileText } from "lucide-react";
 
 // Creating and exporting NoteContainer component as default
 export default function NoteContainer({ className }: ContainerProps) {
@@ -21,9 +23,7 @@ export default function NoteContainer({ className }: ContainerProps) {
   return (
     <div className={className}>
       {journals.length === 0 ? (
-        <h3 className="font-semibold text-center truncate block text-lg">
-          There is nothing to show
-        </h3>
+        <EmptyContainer icon={<FileText />} />
       ) : (
         <div className="grid lg:grid-cols-2 gap-4">
           {journals.map((item, index) => (

@@ -8,6 +8,8 @@ import { habit } from "@/type/general";
 import HabitCard from "../containerItem/habitCard";
 import useDb from "use-db";
 import { HabitsIndexedDBType } from "@/type/indexedDb";
+import { Repeat } from "lucide-react";
+import EmptyContainer from "../emptyContainer";
 
 // Creating and exporting HabitsContainer component as default
 export default function HabitsContainer({ className }: ContainerProps) {
@@ -21,9 +23,7 @@ export default function HabitsContainer({ className }: ContainerProps) {
   return (
     <div className={className}>
       {habits.length === 0 ? (
-        <h3 className="font-semibold text-center truncate block text-lg">
-          There is nothing to show
-        </h3>
+        <EmptyContainer icon={<Repeat />} />
       ) : (
         <div className="grid lg:grid-cols-2 gap-4">
           {habits.map((item, index) => (
